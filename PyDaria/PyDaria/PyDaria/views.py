@@ -22,7 +22,7 @@ def contact():
         return "teste"
     else:
         return render_template(
-            'signin.html',
+            'signin.jade',
             title='PyDaria',
             year=datetime.now().year,
             message='Your contact page.'

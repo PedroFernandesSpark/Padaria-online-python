@@ -48,8 +48,13 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="PyDaria\static\img\banner1.jpg" />
-    <Content Include="PyDaria\static\img\banner2.jpg" />
+    <Content Include="PyDaria\templates\layout.jade">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="PyDaria\templates\signin.html" />
+    <Content Include="PyDaria\templates\signin.jade">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="requirements.txt" />
     <Content Include="PyDaria\static\content\bootstrap.css" />
     <Content Include="PyDaria\static\content\bootstrap.min.css" />
@@ -73,10 +78,7 @@
     <Content Include="PyDaria\static\scripts\respond.js" />
     <Content Include="PyDaria\static\scripts\respond.min.js" />
     <Content Include="PyDaria\static\scripts\_references.js" />
-    <Content Include="PyDaria\templates\about.jade" />
-    <Content Include="PyDaria\templates\contact.jade" />
     <Content Include="PyDaria\templates\index.jade" />
-    <Content Include="PyDaria\templates\layout.jade" />
   </ItemGroup>
   <ItemGroup>
     <Interpreter Include="env\">

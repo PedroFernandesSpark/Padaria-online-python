@@ -6,9 +6,10 @@
     height:80%;
     background-color: white;
 }
-.space{
-    display:flex;
-    justify-content:space-around;
+.space {
+    display: flex;
+    justify-content: space-around;
+    background-color: #FFA500 !important;
 }
 .custom_link {
     color: black;
