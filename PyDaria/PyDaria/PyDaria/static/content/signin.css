@@ -1,0 +1,35 @@
+.cadastro{
+    margin: auto;
+    width: 40%;
+    display: flex;
+    flex-flow: column;
+    height:80%;
+    background-color: white;
+}
+.space{
+    display:flex;
+    justify-content:space-around;
+}
+.custom_link {
+    color: black;
+}
+.custom_link:hover{
+    color: gray;
+}
+.custom_btn{
+    background-color: deepskyblue;
+    color: white;
+}
+.custom_btn:hover{
+    background-color: dodgerblue;
+    color: black;
+}
+.banner{
+    background-image: url(../img/banner1.jpg);
+    height: 30vh;
+    background-position:center;
+}
+.footer{
+    background-color: black;
+    min-height: 10%;
+}
