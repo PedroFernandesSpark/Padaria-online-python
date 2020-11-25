@@ -1,0 +1,47 @@
+body {
+    background-color:  rgb(175, 64, 0);
+    overflow-x: hidden;
+}
+
+#container {
+    margin-top: 20px;
+    margin-left: -8px;
+    width: 100vw;
+    background: url(../img/fundo_index.png) no-repeat center fixed;
+    background-size: cover;
+}
+
+#text {
+    font-size: 40px;
+    text-align: center;
+    padding: 10px 0px;
+}
+
+#text > * {
+    background-color: rgb(204, 89, 35);
+    border: 1px ridge black;
+    margin: 40px auto;
+    padding: 1%;
+    width: fit-content;
+}
+
+#products {
+    margin-top: 40px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+#products > div {
+    background-color: rgb(48, 26, 5);
+    font-size: larger;
+    text-align: center;
+    color: chocolate;
+    padding: 15px;
+    margin: 5px;
+}
+
+#products > div:hover {
+    background-color: aliceblue;
+    cursor: pointer;
+}
