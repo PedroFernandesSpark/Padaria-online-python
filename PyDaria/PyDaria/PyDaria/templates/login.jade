@@ -1,0 +1,35 @@
+extends layout
+
+block content 
+    nav.navbar.navbar-expand-lg.space
+        a.navbar-brand.custom_link.ml-3(href='/')
+        strong PyDaria
+        button.navbar-toggler(type="button")(data-toggle="collapse")(data-target="#navbarSupportedContent")(aria-controls="navbarSupportedContent")(aria-expanded="false")(aria-label="Toggle navigation")
+            span.navbar-toggler-icon
+        div.collapse.navbar-collapse(id="navbarSupportedContent")
+            ul.navbar-nav.mr-auto
+                li.nav-item.active
+                    a.nav-link.custom_link(href="/") Login
+            form.form-inline.my-2.mr-5.my-lg-0
+                input.form-controlmr-sm-2(type="search")(placeholder="Search")(aria-label="Search")
+                button.btn.btn-success.my-2.my-sm-0.custom_btn(type="submit") Search
+    div.banner
+    br
+    div.container.mt-5
+        div.cadastro(style="margin-top: 7vh") 
+             h2(style="text-align:center; font-weight:bold;") Login 
+             form(action="/login")(method="post") 
+                 div.form-group 
+                     label(for="cpfInput") CPF
+                     input(type="text").form-control#cpfInput(aria-describedby="emailHelp")(placeholder="CPF")(required)
+                 div.form-group
+                     label(for="senhaInput") Senha 
+                     input(type="password").form-control#senhaInput(placeholder="Senha")(required)
+                 button(type="submit").btn.btn-primary Fazer Login
+
+     br
+     br
+     br
+     br
+     br
+     div.footer.mt-5
