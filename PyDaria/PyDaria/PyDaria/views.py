@@ -13,7 +13,7 @@ from PyDaria import app
 def home():
     """Renders the home page."""
     return render_template(
-        'index.jade',
+        'index.html',
         title='Home Page',
         year=datetime.now().year,
     )
