@@ -5,7 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 
 # Set up SQLAlchemy
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////clients.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/clients.db'
 db = SQLAlchemy(app)
 
 # Define a class for the Artist table
@@ -48,7 +48,7 @@ class ClientOne(ResourceDetail):
 
 api = Api(app)
 api.route(ClientMany, 'client_many', '/clients')
-api.route(ClientOne, 'client_one', '/clients/<str:cpf>')
+api.route(ClientOne, 'client_one', '/clients/<cpf>')
 
 # main loop to run app in debug mode
 if __name__ == '__main__':
