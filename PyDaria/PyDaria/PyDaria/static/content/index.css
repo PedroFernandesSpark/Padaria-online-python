@@ -1,12 +1,23 @@
+.custom_link {
+    color: black;
+}
+.custom_link:hover{
+    color: gray;
+}
+.custom_btn{
+    background-color: deepskyblue;
+    color: white;
+}
+.custom_btn:hover{
+    background-color: dodgerblue;
+    color: black;
+}
+
 body {
-    background-color:  rgb(175, 64, 0);
-    overflow-x: hidden;
+    background-color: #BD6513;
 }
 
 #container {
-    margin-top: 20px;
-    margin-left: -8px;
-    width: 100vw;
     background: url(../img/fundo_index.png) no-repeat center fixed;
     background-size: cover;
 }
@@ -18,7 +29,7 @@ body {
 }
 
 #text > * {
-    background-color: rgb(204, 89, 35);
+    background-color: #ff8800;
     border: 1px ridge black;
     margin: 40px auto;
     padding: 1%;
@@ -39,9 +50,13 @@ body {
     color: chocolate;
     padding: 15px;
     margin: 5px;
+    width: 200px;
+    height: 300px;
 }
 
 #products > div:hover {
-    background-color: aliceblue;
+    background-color: rgb(238, 162, 22);
+    color: black;
+    font-weight: bolder;
     cursor: pointer;
 }
