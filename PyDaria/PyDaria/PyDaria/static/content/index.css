@@ -4,10 +4,6 @@
 .custom_link:hover{
     color: gray;
 }
-.custom_btn{
-    background-color: deepskyblue;
-    color: white;
-}
 .custom_btn:hover{
     background-color: dodgerblue;
     color: black;
