@@ -1,0 +1,46 @@
+extends layout
+
+block content 
+    nav.navbar.navbar-expand-lg.space
+        a.navbar-brand.custom_link.ml-3(href='/')
+            strong PyDaria
+        button.navbar-toggler(type="button")(data-toggle="collapse")(data-target="#navbarSupportedContent")(aria-controls="navbarSupportedContent")(aria-expanded="false")(aria-label="Toggle navigation")
+            span.navbar-toggler-icon
+        div.collapse.navbar-collapse(id="navbarSupportedContent")
+            ul.navbar-nav.mr-auto
+                li.nav-item.active
+                    a.nav-link.custom_link(href="/login") Login
+                li.nav-item.active
+                    a.nav-link.custom_link(href="/signin") Registrar-se
+            form.form-inline.my-2.mr-5.my-lg-0
+                input.form-controlmr-sm-2(type="search")(placeholder="Search")(aria-label="Search")
+                button.btn.btn-success.my-2.my-sm-0.custom_btn(type="submit") Search
+    div.banner
+    br
+    div.container.mt-5
+        div.cadastro(style="margin-top: 7vh") 
+             h2(style="text-align:center; font-weight:bold;") Cadastro 
+             form(action="/signin")(method="post") 
+                 div.form-group 
+                     label(for="nameInput") Nome Completo
+                     input(type="text").form-control#nameInput(aria-describedby="emailHelp")(placeholder="Nome Completo")(required)
+                 div.form-group
+                     label(for="emailInput") Email 
+                     input(type="email").form-control#emailInput(aria-describedby="emailHelp")(placeholder="Email")(required)
+                 div.form-group 
+                     label(for="cpfInput") CPF
+                     input(type="text").form-control#cpfInput(aria-describedby="emailHelp")(placeholder="CPF")(required)
+                 div.form-group 
+                     label(for="telefoneInput") Telefone 
+                     input(type="text").form-control#telefoneInput(aria-describedby="emailHelp")(placeholder="Telefone")(required)
+                 div.form-group
+                     label(for="senhaInput") Senha 
+                     input(type="password").form-control#senhaInput(placeholder="Senha")(required)
+                 button(type="submit").btn.btn-primary Cadastrar 
+
+     br
+     br
+     br
+     br
+     br
+     div.footer.mt-5

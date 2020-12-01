@@ -1,0 +1,58 @@
+.custom_link {
+    color: black;
+}
+.custom_link:hover{
+    color: gray;
+}
+.custom_btn:hover{
+    background-color: dodgerblue;
+    color: black;
+}
+
+body {
+    background-color: #BD6513;
+}
+
+#container {
+    background: url(../img/fundo_index.png) no-repeat center fixed;
+    background-size: cover;
+}
+
+#text {
+    font-size: 40px;
+    text-align: center;
+    padding: 10px 0px;
+}
+
+#text > * {
+    background-color: #ff8800;
+    border: 1px ridge black;
+    margin: 40px auto;
+    padding: 1%;
+    width: fit-content;
+}
+
+#products {
+    margin-top: 40px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+#products > div {
+    background-color: rgb(48, 26, 5);
+    font-size: larger;
+    text-align: center;
+    color: chocolate;
+    padding: 15px;
+    margin: 5px;
+    width: 200px;
+    height: 300px;
+}
+
+#products > div:hover {
+    background-color: rgb(238, 162, 22);
+    color: black;
+    font-weight: bolder;
+    cursor: pointer;
+}
