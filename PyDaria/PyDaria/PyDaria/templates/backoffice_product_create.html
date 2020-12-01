@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -36,32 +36,34 @@
     <br />
     
     <div class="container mt-5">
-        <div class="cadastro" style=" margin-top: 7vh">
-            <h2 style="text-align:center; font-weight:bold;">Cadastro</h2>
-            <form action="/signin" method="post">
+        <h2>Crie um novo produto</h2>
+        
+        <form>
                 <div class="form-group">
-                    <label for="nameInput" >Nome Completo</label>
-                    <input type="text" class="form-control" name="name" id="nameInput" aria-describedby="emailHelp" placeholder="Nome Completo" required>
+                <label for="name">Nome do Produto</label>
+                <input type="name" name="nome_produto" class="form-control" id="FormName" placeholder="Nome">
                 </div>
                 <div class="form-group">
-                    <label for="emailInput">Email address</label>
-                    <input type="email" class="form-control" name="email" id="emailInput" aria-describedby="emailHelp" placeholder="Email" required>
+                    <label for="price">Preço do produto</label>
+                    <input type="price" class="form-control" name="preco" id="FormPrice" placeholder="0,00 R$">
                 </div>
-                <div class="form-group">
-                    <label for="cpfInput">CPF</label>
-                    <input type="text" class="form-control" name="cpf" id="cpfInput" aria-describedby="emailHelp" placeholder="CPF" required>
-                </div>
-                <div class="form-group">
-                    <label for="telefoneInput">Telefone</label>
-                    <input type="text" class="form-control" name="phone" id="telefoneInput" aria-describedby="emailHelp" placeholder="Telefone" required>
-                </div>
-                <div class="form-group">
-                    <label for="senhaInput">Senha</label>
-                    <input type="password" class="form-control" name="password" id="senhaInput" placeholder="Senha" required>
-                </div>
-                <button type="submit" class="btn btn-primary">Cadastrar</button>
-            </form>
-        </div>
+            <div class="form-group">
+              <label for="descricao">Descrição do produto</label>
+              <textarea class="form-control" name="descricao" id="FormDescricao" rows="3"></textarea>
+            </div>
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="customFile">
+                <label class="custom-file-label" for="image">Escolha a foto</label>
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Estoque</label>
+                <input type="number" class="form-control" id="FormStock" placeholder="Estoque">
+            </div>
+          </form>
+            
+
+        <td><a href="backoffice/create" type="button" class="btn btn-success">Criar</a></td>
+        <td><a href="/backoffice/produtos" type="button" class="btn btn-secondary">Voltar</a></td>
     </div>
     <br />
     <br />

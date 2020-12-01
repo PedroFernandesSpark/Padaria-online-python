@@ -11,7 +11,7 @@ from PyDaria import app
 @app.route('/')
 @app.route('/home')
 def home():
-    """Renders the home page."""
+    "this will render the home page"
     return render_template(
         'index.html',
         title='Home Page',
@@ -21,10 +21,10 @@ def home():
 @app.route('/signin', methods=['GET', 'POST'])
 def contact():
     if request.method == 'POST':
-        return "teste"
+        return request.form
     else:
         return render_template(
-            'signin.jade',
+            'signin.html',
             title='PyDaria',
             year=datetime.now().year,
             message='Your contact page.'
@@ -44,4 +44,20 @@ def login():
     year=datetime.now().year,
     message='Your contact page.',
     error=error
+    )
+
+@app.route('/backoffice/produtos')
+def productadm():
+    return render_template(
+        'backoffice_product.html',
+        title='Backoffice dos produtos',
+        year=datetime.now().year,
+    )
+
+@app.route('/backoffice/produtos/create')
+def productcreate():
+    return render_template(
+        'backoffice_product_create.html',
+        title='Backoffice dos produtos',
+        year=datetime.now().year,
     )
