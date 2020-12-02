@@ -8,6 +8,9 @@ from datetime import datetime
 from flask import render_template, request, redirect, url_for
 from PyDaria import app
 
+logado = False
+nome = 'Nome do cliente'
+
 @app.route('/')
 @app.route('/home')
 def home():
@@ -15,6 +18,8 @@ def home():
     return render_template(
         'index.html',
         title='Home Page',
+        logado=logado,
+        nome=nome,
         year=datetime.now().year,
     )
 
@@ -60,4 +65,15 @@ def productcreate():
         'backoffice_product_create.html',
         title='Backoffice dos produtos',
         year=datetime.now().year,
+    )
+
+@app.route('/produto', methods=['GET','POST'])
+def produto():
+    #logado = False
+    #nome = 'Nome Do Cliente'
+    return render_template(
+    'produto.html',
+    logado=logado,
+    nome=nome,
+    produto=produto
     )
