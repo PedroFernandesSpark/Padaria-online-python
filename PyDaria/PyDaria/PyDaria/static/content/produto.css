@@ -1,4 +1,19 @@
-.produto {
-    margin-top: 60px;
-    text-align: center;
+.divExterno {
+    display: flex;
+    flex-flow: row nowrap;
+    width: 95vw;
+}
+
+
+
+.preco-produto {
+    display: flex;
+    align-items: center;
+}
+
+.preco-produto span {
+    font-size: 26px;
+    font-weight: 300;
+    color: #43474D;
+    margin-right: 20px;
 }
