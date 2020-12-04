@@ -46,23 +46,27 @@ def home():
 
 @app.route('/signin', methods=['GET', 'POST'])
 def singup():
+    error = None
     if request.method == 'POST' and request.form:
         cpf = request.form['cpf']
+        if show_client(cpf):
+            error = "Já tem um usuário cadastrado com esse CPF"
         name = request.form['name']
         email = request.form['email']
         telephone = request.form['phone']
         password = request.form['password']
-        add_client(cpf,name,email,telephone,password)
-        return redirect(url_for('login'))
-    else:
-        if session and session['client_cpf']:
-            return redirect(url_for('home'))
-        return render_template(
-            'signin.html',
-            title='PyDaria',
-            year=datetime.now().year,
-            message='Your contact page.'
-        )
+        if not error:
+            add_client(cpf,name,email,telephone,password)
+            return redirect(url_for('login'))
+    if session and session['client_cpf']:
+        return redirect(url_for('home'))
+    return render_template(
+        'signin.html',
+        title='PyDaria',
+        year=datetime.now().year,
+        error=error,
+        message='Your contact page.'
+    )
 
 @app.route('/login', methods=['GET','POST'])
 def login():
