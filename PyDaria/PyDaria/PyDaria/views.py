@@ -14,8 +14,6 @@ from backend.database import show_client, add_client, add_product
 # add_client(cpf, name, email, telephone, password)
 
 # show_client(cpf) return: ((id, name, email, telephone, cpf, isAdmin, password))
-#                       [0]  [1]   [2]    [3]   [4]   [5]       [6]
-
 # add_product(name, price, img, qtd)
 
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
@@ -34,7 +32,7 @@ def home():
             nome = "Cliente não encontrado"
         else:
             nome = client[0][1]
-        if client[0][4] == '12345678900':
+        if client[0][5] == 1:
             return redirect(url_for('productadm'))
     return render_template(
         'index.html',
@@ -56,7 +54,10 @@ def singup():
         telephone = request.form['phone']
         password = request.form['password']
         if not error:
-            add_client(cpf,name,email,telephone,password)
+            if cpf == "12345678900" or "112233445566":
+                add_client(cpf,name,email,telephone,password, True)
+            else:
+                add_client(cpf,name,email,telephone,password)
             return redirect(url_for('login'))
     if session and session['client_cpf']:
         return redirect(url_for('home'))
@@ -82,7 +83,9 @@ def login():
         if error is None:
             session.clear()
             session['client_cpf'] = client[0][4]
-            if client[0][4] == '12345678900':
+            session.permanent = True
+            session.permanent_session_lifetime = 36000
+            if client[0][5] == 1:
                 return redirect(url_for('productadm'))
             return redirect(url_for('home'))
     if session and session['client_cpf']:
@@ -105,6 +108,8 @@ def productadm():
         if not client:
             nome = "Cliente não encontrado"
         else:
+            if client[0][5] == 0:
+                return redirect(url_for('home'))
             nome = client[0][1]
     return render_template(
         'backoffice_product.html',
@@ -132,6 +137,8 @@ def productcreate():
             if not client:
                 nome = "Cliente não encontrado"
             else:
+                if client[0][5] == 0:
+                    return redirect(url_for('home'))
                 nome = client[0][1]
         return render_template(
             'backoffice_product_create.html',
