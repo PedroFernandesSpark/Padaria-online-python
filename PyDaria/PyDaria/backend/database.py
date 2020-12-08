@@ -34,13 +34,13 @@ cursor.execute("CREATE TABLE IF NOT EXISTS `Products` ( \
 
 
 # Adiciona um cliente no banco de dados apartir do cpf, email, nome e telefone
-def add_client(cpf: str, name: str, email: str, telephone: str, password: str):
+def add_client(cpf: str, name: str, email: str, telephone: str, password: str, isAdmin = False):
 
     # Comando SQL a ser executado
-    query = ("INSERT INTO Clients (Cpf, Name, Email, Telephone, Password, isAdmin) VALUES (%s, %s, %s, %s, %s, False);")
+    query = ("INSERT INTO Clients (Cpf, Name, Email, Telephone, Password, isAdmin) VALUES (%s, %s, %s, %s, %s, %s);")
     
     # Valores a serem adicionados
-    val = (cpf, name, email, telephone, password)
+    val = (cpf, name, email, telephone, password, isAdmin)
 
     # Executa o comando
     cursor.execute(query, val)
@@ -51,7 +51,7 @@ def add_client(cpf: str, name: str, email: str, telephone: str, password: str):
     # Verifica, pelo número de linhas modificadas, se a operação foi bem sucedida
     if( cursor.rowcount < 1):
         print("Failed to add 'Cliente: {}' to database!".format(name))
-    return print("Added 'Cliente: {}' to databse!".format(name))
+    return print("Added 'Cliente: {}' to database!".format(name))
 
 # Retorna uma lista de tuplas com todos os dados de todos clientes
 def show_all_clients():

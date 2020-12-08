@@ -18,16 +18,19 @@
 
             <ul class="navbar-nav mr-auto">
                 {% if logado %}
-                <li class="nav-item active">
-                    <a class="nav-link custom_link" href="/"> {{ nome }} <span class="sr-only">(current)</span></a>
-                </li>
+                    <li class="nav-item active">
+                        <a class="nav-link custom_link" href="/"> {{ nome }} <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link custom_link" href="/logout"> Logout <span class="sr-only">(current)</span></a>
+                    </li>
                 {% else %}
-                <li class="nav-item active">
-                    <a class="nav-link custom_link" href="/login">Login <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link custom_link" href="/signin">Registrar-se <span class="sr-only">(current)</span></a>
-                </li>
+                    <li class="nav-item active">
+                        <a class="nav-link custom_link" href="/login">Login <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link custom_link" href="/signin">Registrar-se <span class="sr-only">(current)</span></a>
+                    </li>
                 {% endif %}
             </ul>
             <form class="form-inline my-2 mr-5 my-lg-0">

@@ -57,6 +57,9 @@
                     <label for="cpfInput">CPF</label>
                     <input type="text" class="form-control" name="cpf" id="cpfInput" aria-describedby="emailHelp" placeholder="CPF" required>
                 </div>
+                {% if error %}
+                    <p><i>{{error}}</i></p>
+                {% endif %}
                 <div class="form-group">
                     <label for="telefoneInput">Telefone</label>
                     <input type="text" class="form-control" name="phone" id="telefoneInput" aria-describedby="emailHelp" placeholder="Telefone" required>
