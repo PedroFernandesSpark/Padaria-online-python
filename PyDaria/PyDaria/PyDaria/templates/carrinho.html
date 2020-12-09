@@ -48,8 +48,7 @@
             <div class="banner">
 
             </div>
-            <br><br>
-            <div class="container mt-1" style="display: flex; flex-flow: column;">
+            <!--<div class="container mt-1" style="display: flex; flex-flow: column;">
                 <h1 class="ml-5 mt-5" style="font-weight: bold;"><em class="fas fa-shopping-bag mr-1" style="width: 50px;"></em> Carrinho</h1>
                 <div class="carrinho_container mt-4" style="margin: auto; width: 90%; background-color: white;  min-height: 30vh; border-radius: 3px;">
                     <br>
@@ -57,7 +56,56 @@
                     <br>
                     <h1 style="text-align: center; margin: auto; width: 60%;">O seu carrinho de compras Pydaria está vazio</h1>
                 </div>
+            </div>-->
+            <div class="container mt-1" style="display: flex; flex-flow: column;">
+                <h1 class="ml-5 mt-5" style="font-weight: bold;"><em class="fas fa-shopping-bag mr-1" style="width: 50px;"></em> Carrinho</h1>
+                <div class="carrinho_container mt-4 p-4" style="margin: auto; width: 90%; background-color: white;  min-height: 30vh; border-radius: 3px;">
+                    <div class="p-2" style="border-bottom: 1px solid black;">
+                        <div style="display: flex; flex-flow: row;">
+                            <div class="img_cart mr-3" style="width: 15vw; height: 15vw; background-color: black;"></div>
+                            <div>
+                                <h2 class="name_cart"> Nome do produto</h2>
+                                <div class="full_prcie mt-2" style="font-size: 1.4rem;">Preço Total: <span style="color: green;">$ 125,00</span></div>
+                                <h4 class="quant_cart mt-3">Quantidade: 5</h4>
+                                <br>
+                                <br>
+                                <button type="submit" class="btn btn-danger mb-2"><a href="/cart/delete" style="color: white;">Excluir</a></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-2" style="border-bottom: 1px solid black;">
+                        <div style="display: flex; flex-flow: row;">
+                            <div class="img_cart mr-3" style="width: 15vw; height: 15vw; background-color: black;"></div>
+                            <div>
+                                <h2 class="name_cart"> Nome do produto 2</h2>
+                                <div class="full_prcie mt-2" style="font-size: 1.4rem;">Preço Total: <span style="color: green;">$ 15,15</span></div>
+                                <h4 class="quant_cart mt-3">Quantidade: 3</h4>
+                                <br>
+                                <br>
+                                <button type="submit" class="btn btn-danger mb-2"><a href="/cart/delete" style="color: white;">Excluir</a></button>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div style="display: flex; justify-content: space-between;">
+                        <h2 style="font-weight: bold;">Preço Total: <span style="color: green; font-weight: normal;">$ 140,15</span></h2>
+                        <button type="submit" class="btn btn-success mb-2">Finalizar a compra</button>
+                    </div>
+                </div>
             </div>
         </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
         <script src="https://kit.fontawesome.com/6a249e9f74.js" crossorigin="anonymous"></script>
+        <style>
+            a:hover{
+                color: white;
+                text-decoration: none;
+            }
+        </style>
     </body>
