@@ -166,6 +166,24 @@ def produto():
         produto=produto
     )
 
+@app.route('/carrinho', methods=['GET','POST'])
+def carrinho():
+    logado = False
+    nome = 'Nome do cliente'
+    if session and session['client_cpf']:
+        logado = True
+        client = show_client(session['client_cpf'])
+        if not client:
+            nome = "Cliente não encontrado"
+        else:
+            nome = client[0][1]
+    return render_template(
+        'carrinho.html',
+        logado=logado,
+        nome=nome,
+        carrinho=carrinho
+    )
+
 @app.route('/logout')
 def logout():
     session.clear()
