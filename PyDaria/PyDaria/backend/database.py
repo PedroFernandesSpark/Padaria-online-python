@@ -2,7 +2,7 @@ import mysql.connector
 from flask import make_response
 
 # Conencta no banco de dados
-db = mysql.connector.connect(host="localhost", user="root",password="", database="clientes")
+db = mysql.connector.connect(host="localhost", user="root",password="mp2020@@", database="clientes")
 
 # Gera um cursos que será responsável por realizar as ações
 cursor = db.cursor()
@@ -34,13 +34,13 @@ cursor.execute("CREATE TABLE IF NOT EXISTS `Products` ( \
 
 
 # Adiciona um cliente no banco de dados apartir do cpf, email, nome e telefone
-def add_client(cpf: str, name: str, email: str, telephone: str, password: str, isAdmin = False):
+def add_client(cpf: str, name: str, email: str, telephone: str, password: str):
 
     # Comando SQL a ser executado
-    query = ("INSERT INTO Clients (Cpf, Name, Email, Telephone, Password, isAdmin) VALUES (%s, %s, %s, %s, %s, %s);")
+    query = ("INSERT INTO Clients (Cpf, Name, Email, Telephone, Password, isAdmin) VALUES (%s, %s, %s, %s, %s, False);")
     
     # Valores a serem adicionados
-    val = (cpf, name, email, telephone, password, isAdmin)
+    val = (cpf, name, email, telephone, password)
 
     # Executa o comando
     cursor.execute(query, val)
