@@ -7,7 +7,7 @@ Routes and views for the flask application.
 from datetime import datetime
 from flask import render_template, request, redirect, url_for, session
 from PyDaria import app
-from backend.database import show_client, add_client, add_product
+from backend.database import show_client, add_client, add_product, show_all_products
 
 # Definição das funções do database.py:
 
@@ -32,7 +32,7 @@ def home():
             nome = "Cliente não encontrado"
         else:
             nome = client[0][1]
-        if client[0][5] == 1:
+        if client[0][4] == "12345678900" or client[0][4] == "112233445566":
             return redirect(url_for('productadm'))
     return render_template(
         'index.html',
@@ -53,11 +53,8 @@ def singup():
         email = request.form['email']
         telephone = request.form['phone']
         password = request.form['password']
-        if not error:
-            if cpf == "12345678900" or "112233445566":
-                add_client(cpf,name,email,telephone,password, True)
-            else:
-                add_client(cpf,name,email,telephone,password)
+        if not error:    
+            add_client(cpf,name,email,telephone,password)
             return redirect(url_for('login'))
     if session and session['client_cpf']:
         return redirect(url_for('home'))
@@ -85,7 +82,7 @@ def login():
             session['client_cpf'] = client[0][4]
             session.permanent = True
             session.permanent_session_lifetime = 36000
-            if client[0][5] == 1:
+            if client[0][4] == "12345678900" or client[0][4] == "112233445566":
                 return redirect(url_for('productadm'))
             return redirect(url_for('home'))
     if session and session['client_cpf']:
@@ -108,7 +105,7 @@ def productadm():
         if not client:
             nome = "Cliente não encontrado"
         else:
-            if client[0][5] == 0:
+            if client[0][4] != "12345678900" and client[0][4] != "112233445566":
                 return redirect(url_for('home'))
             nome = client[0][1]
     return render_template(
@@ -137,7 +134,7 @@ def productcreate():
             if not client:
                 nome = "Cliente não encontrado"
             else:
-                if client[0][5] == 0:
+                if client[0][4] != "12345678900" and client[0][4] != "112233445566":
                     return redirect(url_for('home'))
                 nome = client[0][1]
         return render_template(
