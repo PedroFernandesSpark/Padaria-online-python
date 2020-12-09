@@ -40,10 +40,26 @@
                     </form>
                 </div>
             </nav>
-            <div class="produto">
-                <h1> Nome do produto </h1>
-                <img src="../static/img/croissant.png" width="600px">
-                <h2>Teste</h2>
+            <br>
+            <br>
+            <div class="produto_container mt-5" style="display: flex; flex-flow: row;">
+                <img src="../static/img/croissant.png" style="margin-left: 5%;" width="500px">
+                <div class="text_container mt-5 p-3" style="width: 40%; margin-left: 5%;">
+                    <div class="mb-4"><h1>nome do produto</h1></div>
+                    <div class="my-3"><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloremque,
+                         doloribus unde excepturi sit quas nobis nisi magni numquam sequi et,
+                          laborum earum voluptates! Nihil sapiente minus quae assumenda quas harum!</p></div>
+                    <h3>Preço: <span style="color:green">R$ 25,00</span></h3>
+                    <form>
+                        <div class="form-group">
+                            <div class="mt-5 mb-4"><h3>Quantidade</h3></div>
+                            <input type="number" class="form-control" id="quant" name="quantidade" aria-describedby="emailHelp" placeholder="0" style="width:52%;">
+                            <button type="button" class="btn btn-success mt-3"><em class="fas fa-shopping-bag mr-3" style="width: 10px;"></em>Adicionar ao carrinho</button>
+                          </div>
+                    </form>
+                </div>
+
             </div>
         </div>
+        <script src="https://kit.fontawesome.com/6a249e9f74.js" crossorigin="anonymous"></script>
     </body>
