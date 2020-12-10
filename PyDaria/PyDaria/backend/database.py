@@ -43,7 +43,7 @@ cursor.execute("CREATE TABLE IF NOT EXISTS`Carrinho` ( \
 
 
 # Adiciona um cliente no banco de dados apartir do cpf, email, nome e telefone
-def add_client(cpf: str, name: str, email: str, telephone: str, password: str, isAdmin: bool = False):
+def add_client(cpf: str, name: str, email: str, telephone: str, password: str, isAdmin: bool):
 
     # Comando SQL a ser executado
     query = ("INSERT INTO Clients (Cpf, Name, Email, Telephone, Password, isAdmin) VALUES (%s, %s, %s, %s, %s, false);")
