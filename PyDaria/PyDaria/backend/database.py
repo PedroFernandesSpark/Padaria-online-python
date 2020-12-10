@@ -2,7 +2,7 @@ import mysql.connector
 from flask import make_response
 
 # Conencta no banco de dados
-db = mysql.connector.connect(host="localhost", user="root",password="", database="clientes")
+db = mysql.connector.connect(host="localhost", user="root",password="mp2020@@", database="clientes")
 
 # Gera um cursos que será responsável por realizar as ações
 cursor = db.cursor()
@@ -20,7 +20,7 @@ cursor.execute("CREATE TABLE IF NOT EXISTS `Clients` ( \
   `isAdmin` tinyint(4) NOT NULL, \
   `Password` varchar(45) NOT NULL, \
   PRIMARY KEY (`ID`) \
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;")
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;")
 
 # Cria a tabela de produtos
 cursor.execute("CREATE TABLE IF NOT EXISTS `Products` ( \
@@ -32,15 +32,24 @@ cursor.execute("CREATE TABLE IF NOT EXISTS `Products` ( \
   PRIMARY KEY (`ID_Products`) \
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;")
 
+# Cria a tabela do carrinho de compras
+cursor.execute("CREATE TABLE IF NOT EXISTS`Carrinho` ( \
+  `cpf_cliente` varchar(11) NOT NULL, \
+  `quantidade` int(11) DEFAULT NULL, \
+  `item` int(11) DEFAULT NULL, \
+  `price` float DEFAULT NULL, \
+  `valor` float DEFAULT NULL \
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;")
+
 
 # Adiciona um cliente no banco de dados apartir do cpf, email, nome e telefone
-def add_client(cpf: str, name: str, email: str, telephone: str, password: str, isAdmin = False):
+def add_client(cpf: str, name: str, email: str, telephone: str, password: str, isAdmin: bool = False):
 
     # Comando SQL a ser executado
-    query = ("INSERT INTO Clients (Cpf, Name, Email, Telephone, Password, isAdmin) VALUES (%s, %s, %s, %s, %s, %s);")
+    query = ("INSERT INTO Clients (Cpf, Name, Email, Telephone, Password, isAdmin) VALUES (%s, %s, %s, %s, %s, false);")
     
     # Valores a serem adicionados
-    val = (cpf, name, email, telephone, password, isAdmin)
+    val = (cpf, name, email, telephone, password)
 
     # Executa o comando
     cursor.execute(query, val)
@@ -297,3 +306,125 @@ def update_q_product(id_product: int, new_val: int):
         return False
     print("Quantity updated!")
     return True
+
+# Adiciona um produto no carrinho
+def add_to_cart(cpf: str, id_product: int, quantity: int):
+
+    # Pega o valor do produto
+    query = ("SELECT Price FROM Products WHERE ID_Products = {};".format(id_product))
+    cursor.execute(query)
+    result = cursor.fetchall()
+    price = sum(result[0])
+    valor = price * quantity
+
+    # Comando SQL para adicionar um produto no carrinho
+    query = ("INSERT INTO Carrinho (cpf_cliente, quantidade, item, price, valor) VALUES (%s, %s, %s, %s, %s);")
+    val = (cpf, quantity, id_product, price, valor)
+
+    # Executa o comando
+    cursor.execute(query, val)
+
+    # Salva as alterações do banco
+    db.commit()
+
+    # Verifica, pelo número de linhas modificadas, se a operação foi bem sucedida
+    if( cursor.rowcount < 1):
+        print("Failed to add 'Product: {}' to Shopping Cart!".format(id_product))
+    return print("Added 'Product: {}' to Shopping Cart!".format(id_product))
+
+# Mostra os produtos no carrinho
+def show_cart(cpf: str):
+
+    # Comando SQL a ser executado
+    query = ("SELECT * FROM Carrinho WHERE cpf_cliente = {};".format(cpf))
+
+    # Executa o comando
+    cursor.execute(query)
+
+    # Agrupa os resultados em tuplas
+    result = cursor.fetchall()
+
+    # Imprime os resultados em um terminal
+    for i in result:
+        print(i)
+
+    # Retorna as tuplas
+    return result
+
+# Retorna o valor do carrinho
+def show_cart_val(cpf: str):
+
+    # Comando SQL a ser executado
+    query = ("SELECT valor FROM Carrinho WHERE cpf_cliente = {};".format(cpf))
+
+    # Executa o comando
+    cursor.execute(query)
+
+    # Agrupa os resultados em tuplas
+    result = cursor.fetchall()
+
+    # Pega o valor do carrinho
+    price = sum([pair[0] for pair in result])
+
+    # Retorna o preco
+    return price
+
+# Limpa um item do carrinho
+def rmv_from_cart(cpf: str, id_product: int):
+
+    # Comando SQL a ser executado
+    query = ("DELETE FROM Carrinho WHERE item = {} AND cpf_cliente = {}".format(id_product, cpf))
+
+    # Executa o comando SQL
+    cursor.execute(query)
+
+    # Salva as alterações
+    db.commit()
+
+    if( cursor.rowcount < 1):
+        print("Failed to remove 'Item: {}' from cart!".format(id_product))
+    print("Removed 'Item: {}' from cart!".format(id_product))
+
+# Limpa todo o carrinho
+def rmv_cart(cpf: str):
+
+    # Comando SQL a ser executado
+    query = ("DELETE FROM Carrinho WHERE cpf_cliente = {};".format(cpf))
+
+    # Executa o comando SQL
+    cursor.execute(query)
+
+    # Salva as alterações
+    db.commit()
+
+    if( cursor.rowcount < 1):
+        print("Failed to remove 'Cart'")
+    print("Removed 'Cart'")
+
+# Atualiza os valores quando uma compra é finalizada
+def complete_purchase(cpf: str):
+
+    # Atualiza as quantidades no estoque
+    cart = show_cart(cpf)
+    
+    for dados in cart:
+        print(dados[1])
+        print(dados[2])
+        update_q_product(dados[2], dados[1])
+    
+    rmv_cart(cpf)
+
+# Remove tudo
+def rmv_everything():
+    query = ("DELETE FROM Clients;")
+    cursor.execute(query)
+    db.commit()
+
+    query = ("DELETE FROM Products;")
+    cursor.execute(query)
+    db.commit()
+
+    query = ("DELETE FROM Carrinho;")
+    cursor.execute(query)
+    db.commit()
+
