@@ -27,7 +27,7 @@ cursor.execute("CREATE TABLE IF NOT EXISTS `Products` ( \
   `ID_Products` int(11) NOT NULL AUTO_INCREMENT, \
   `Price` float NOT NULL, \
   `Name` varchar(45) NOT NULL, \
-  `Picture` varchar(255) NOT NULL, \
+  `Picture` MEDIUMTEXT NOT NULL, \
   `Quantity` int(11) NOT NULL, \
   PRIMARY KEY (`ID_Products`) \
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;")
@@ -93,7 +93,7 @@ def show_client(cpf: str):
     # Agrupa os dados em uma tupla
     result = cursor.fetchall()
 
-    # Imprime o resulado em um terminal
+    # Imprime o resultado em um terminal
     for i in result:
         print(i)
 
@@ -222,8 +222,8 @@ def show_all_products():
     result = cursor.fetchall()
     
     # Imprime o resultado em um terminal
-    for i in result:
-        print(i)
+    #for i in result:
+        #print(i)
     
     # Retorna as tuplas
     return result

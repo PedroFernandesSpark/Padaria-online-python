@@ -19,7 +19,7 @@
             <ul class="navbar-nav mr-auto">
               {% if logado %}
                 <li class="nav-item active">
-                    <a class="nav-link custom_link" href="/"> {{ nome }} <span class="sr-only">(current)</span></a>
+                    <a class="nav-link custom_link" href="/backoffice/produtos"> Admin <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item active">
                   <a class="nav-link custom_link" href="/logout"> Logout <span class="sr-only">(current)</span></a>
@@ -57,27 +57,15 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Pão</td>
-                <td>0,50 R$</td>
-                <td>15</td>
-                <td><a href="backoffice/editar/"></a><button type="button" class="btn btn-primary">Editar</button></a></td>
-                <td><button type="button" class="btn btn-danger">Deletar</button></td>
-              </tr>
-              <tr>
-                <td>Torta de frango frito</td>
-                <td>5,50 R$</td>
-                <td>3</td>
-                <td><a href="backoffice/editar/"></a><button type="button" class="btn btn-primary">Editar</button></a></td>
-                <td><button type="button" class="btn btn-danger">Deletar</button></td>
-              </tr>
-              <tr>
-                <td>Empadinhas</td>
-                <td>1,50 R$</td>
-                <td>Indisponível</td>
-                <td><a href="backoffice/editar/"></a><button type="button" class="btn btn-primary">Editar</button></a></td>
-                <td><button type="button" class="btn btn-danger">Deletar</button></td>
-              </tr>
+              {% for produto in produtos %}
+                <tr>
+                  <td>{{produto[2]}}</td>
+                  <td>{{produto[1]}}</td>
+                  <td>{{produto[4]}}</td>
+                  <td><a href="backoffice/editar/"></a><button type="button" class="btn btn-primary">Editar</button></a></td>
+                  <td><button type="button" class="btn btn-danger">Deletar</button></td>
+                </tr>
+              {% endfor %}
             </tbody>
           </table>
           <td><a href="produtos/create" type="button" class="btn btn-success">Novo Produto</a></td>

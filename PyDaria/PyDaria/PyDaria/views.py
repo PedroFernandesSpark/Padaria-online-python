@@ -25,6 +25,8 @@ def home():
     "this will render the home page"
     logado = False
     nome = 'Nome do cliente'
+    admin = False
+    produtos = show_all_products()
     if session and session['client_cpf']:
         logado = True
         client = show_client(session['client_cpf'])
@@ -33,12 +35,14 @@ def home():
         else:
             nome = client[0][1]
         if client[0][4] == "12345678900" or client[0][4] == "112233445566":
-            return redirect(url_for('productadm'))
+            admin = True
     return render_template(
         'index.html',
         title='Home Page',
         logado=logado,
         nome=nome,
+        admin=admin,
+        produtos=produtos,
         year=datetime.now().year,
     )
 
@@ -108,20 +112,23 @@ def productadm():
             if client[0][4] != "12345678900" and client[0][4] != "112233445566":
                 return redirect(url_for('home'))
             nome = client[0][1]
+    produtos = show_all_products()
     return render_template(
         'backoffice_product.html',
         title='Backoffice dos produtos',
         logado = logado,
+        produtos=produtos,
         nome = nome,
         year=datetime.now().year,
     )
 
 @app.route('/backoffice/produtos/create', methods=['GET','POST'])
 def productcreate():
-    if request.method == 'POST':
+    if request.method == 'POST' and request.form:
         name = request.form['nome_produto']
-        descricao = request.form['descricao']
+        price = request.form['preco']
         img = request.form['image']
+        descricao = request.form['descricao']
         qtd = request.form['stock']
         add_product(name, price, img, qtd)
         return redirect(url_for("productadm"))
@@ -145,8 +152,8 @@ def productcreate():
             year=datetime.now().year,
         )
 
-@app.route('/produto', methods=['GET','POST'])
-def produto():
+@app.route('/prod/<prod_id>', methods=['GET','POST'])
+def produto(prod_id):
     logado = False
     nome = 'Nome do cliente'
     if session and session['client_cpf']:
@@ -160,6 +167,7 @@ def produto():
         'produto.html',
         logado=logado,
         nome=nome,
+        prod_id=prod_id,
         produto=produto
     )
 

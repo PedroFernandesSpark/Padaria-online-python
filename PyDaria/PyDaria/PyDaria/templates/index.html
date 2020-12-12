@@ -16,12 +16,16 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
     
                 <ul class="navbar-nav mr-auto">
+                {% if logado %}
                     <li class="nav-item active ml-2">
                         <a class="nav-link custom_link" href="/carrinho" style="color: black;"><span><em class="fas fa-shopping-bag mr-1" style="width: 20px;"></em> Carrinho</span></a>
                     </li>
-                {% if logado %}
                     <li class="nav-item active">
-                        <a class="nav-link custom_link" href="/"> {{ nome }} <span class="sr-only">(current)</span></a>
+                        {% if admin %}
+                            <a class="nav-link custom_link" href="/backoffice/produtos"> Admin <span class="sr-only">(current)</span></a>
+                        {% else %}
+                            <a class="nav-link custom_link" href="/"> {{ nome }} <span class="sr-only">(current)</span></a>
+                        {% endif %}
                     </li>
                     <li class="nav-item active">
                         <a class="nav-link custom_link" href="/logout"> Logout <span class="sr-only">(current)</span></a>
@@ -49,111 +53,121 @@
             </div>
         </div>
         <div id="products">
-            <div onclick="window.location.href='/produto'" id="prod1">
-                <img src="../static/img/pao.png" width="150px">
-                <p>Pão Francês</p>
-                <p>R$1,00</p>
-            </div>
-            <div onclick="window.location.href='/produto'" id="prod2">
-                <img src="../static/img/pao_de_queijo.png" width="150px">
-                <p>Pão de Queijo</p>
-                <p>R$2,00</p>
-            </div>
-            <div onclick="window.location.href='/produto'" id="prod3">
-                <img src="../static/img/croissant.png" width="150px">
-                <p>Croissant</p>
-                <p>R$5,00</p>
-            </div>
-            <div onclick="window.location.href='/produto'" id="prod4">
-                <img src="../static/img/refrigerantes.png" width="150px">
-                <p>Refrigerante 2 litros</p>
-                <p>R$9,00</p>
-            </div>
-            <div onclick="window.location.href='/produto'" id="prod2">
-                <img src="../static/img/pao_de_queijo.png" width="150px">
-                <p>Pão de Queijo</p>
-                <p>R$2,00</p>
-            </div>
-            <div onclick="window.location.href='/produto'" id="prod3">
-                <img src="../static/img/croissant.png" width="150px">
-                <p>Croissant</p>
-                <p>R$5,00</p>
-            </div>
-            <div onclick="window.location.href='/produto'" id="prod4">
-                <img src="../static/img/refrigerantes.png" width="150px">
-                <p>Refrigerante 2 litros</p>
-                <p>R$9,00</p>
-            </div>
-            <div onclick="window.location.href='/produto'" id="prod2">
-                <img src="../static/img/pao_de_queijo.png" width="150px">
-                <p>Pão de Queijo</p>
-                <p>R$2,00</p>
-            </div>
-            <div onclick="window.location.href='/produto'" id="prod3">
-                <img src="../static/img/croissant.png" width="150px">
-                <p>Croissant</p>
-                <p>R$5,00</p>
-            </div>
-            <div onclick="window.location.href='/produto'" id="prod2">
-                <img src="../static/img/pao_de_queijo.png" width="150px">
-                <p>Pão de Queijo</p>
-                <p>R$2,00</p>
-            </div>
-            <div onclick="window.location.href='/produto'" id="prod3">
-                <img src="../static/img/croissant.png" width="150px">
-                <p>Croissant</p>
-                <p>R$5,00</p>
-            </div>
-            <div onclick="window.location.href='/produto'" id="prod4">
-                <img src="../static/img/refrigerantes.png" width="150px">
-                <p>Refrigerante 2 litros</p>
-                <p>R$9,00</p>
-            </div>
-            <div onclick="window.location.href='/produto'" id="prod2">
-                <img src="../static/img/pao_de_queijo.png" width="150px">
-                <p>Pão de Queijo</p>
-                <p>R$2,00</p>
-            </div>
-            <div onclick="window.location.href='/produto'" id="prod3">
-                <img src="../static/img/croissant.png" width="150px">
-                <p>Croissant</p>
-                <p>R$5,00</p>
-            </div>
-            <div onclick="window.location.href='/produto'" id="prod4">
-                <img src="../static/img/refrigerantes.png" width="150px">
-                <p>Refrigerante 2 litros</p>
-                <p>R$9,00</p>
-            </div>
-            <div onclick="window.location.href='/produto'" id="prod2">
-                <img src="../static/img/pao_de_queijo.png" width="150px">
-                <p>Pão de Queijo</p>
-                <p>R$2,00</p>
-            </div>
-            <div onclick="window.location.href='/produto'" id="prod3">
-                <img src="../static/img/croissant.png" width="150px">
-                <p>Croissant</p>
-                <p>R$5,00</p>
-            </div>
-            <div onclick="window.location.href='/produto'" id="prod4">
-                <img src="../static/img/refrigerantes.png" width="150px">
-                <p>Refrigerante 2 litros</p>
-                <p>R$9,00</p>
-            </div>
-            <div onclick="window.location.href='/produto'" id="prod2">
-                <img src="../static/img/pao_de_queijo.png" width="150px">
-                <p>Pão de Queijo</p>
-                <p>R$2,00</p>
-            </div>
-            <div onclick="window.location.href='/produto'" id="prod3">
-                <img src="../static/img/croissant.png" width="150px">
-                <p>Croissant</p>
-                <p>R$5,00</p>
-            </div>
-            <div onclick="window.location.href='/produto'" id="prod4">
-                <img src="../static/img/refrigerantes.png" width="150px">
-                <p>Refrigerante 2 litros</p>
-                <p>R$9,00</p>
-            </div>
+            {% if produtos %}
+                {% for produto in produtos %}
+                    <div onclick="window.location.href='/prod/{{produto[0]}}'">
+                        <img src="{{produto[3]}}" width="150px">
+                        <p>{{produto[2]}}</p>
+                        <p>{{produto[1]}}</p>
+                    </div>
+                {% endfor%}
+            {% else %}
+                <div onclick="window.location.href='/produto'" id="prod1">
+                    <img src="../static/img/pao.png" width="150px">
+                    <p>Pão Francês</p>
+                    <p>R$1,00</p>
+                </div>
+                <div onclick="window.location.href='/produto'" id="prod2">
+                    <img src="../static/img/pao_de_queijo.png" width="150px">
+                    <p>Pão de Queijo</p>
+                    <p>R$2,00</p>
+                </div>
+                <div onclick="window.location.href='/produto'" id="prod3">
+                    <img src="../static/img/croissant.png" width="150px">
+                    <p>Croissant</p>
+                    <p>R$5,00</p>
+                </div>
+                <div onclick="window.location.href='/produto'" id="prod4">
+                    <img src="../static/img/refrigerantes.png" width="150px">
+                    <p>Refrigerante 2 litros</p>
+                    <p>R$9,00</p>
+                </div>
+                <div onclick="window.location.href='/produto'" id="prod2">
+                    <img src="../static/img/pao_de_queijo.png" width="150px">
+                    <p>Pão de Queijo</p>
+                    <p>R$2,00</p>
+                </div>
+                <div onclick="window.location.href='/produto'" id="prod3">
+                    <img src="../static/img/croissant.png" width="150px">
+                    <p>Croissant</p>
+                    <p>R$5,00</p>
+                </div>
+                <div onclick="window.location.href='/produto'" id="prod4">
+                    <img src="../static/img/refrigerantes.png" width="150px">
+                    <p>Refrigerante 2 litros</p>
+                    <p>R$9,00</p>
+                </div>
+                <div onclick="window.location.href='/produto'" id="prod2">
+                    <img src="../static/img/pao_de_queijo.png" width="150px">
+                    <p>Pão de Queijo</p>
+                    <p>R$2,00</p>
+                </div>
+                <div onclick="window.location.href='/produto'" id="prod3">
+                    <img src="../static/img/croissant.png" width="150px">
+                    <p>Croissant</p>
+                    <p>R$5,00</p>
+                </div>
+                <div onclick="window.location.href='/produto'" id="prod2">
+                    <img src="../static/img/pao_de_queijo.png" width="150px">
+                    <p>Pão de Queijo</p>
+                    <p>R$2,00</p>
+                </div>
+                <div onclick="window.location.href='/produto'" id="prod3">
+                    <img src="../static/img/croissant.png" width="150px">
+                    <p>Croissant</p>
+                    <p>R$5,00</p>
+                </div>
+                <div onclick="window.location.href='/produto'" id="prod4">
+                    <img src="../static/img/refrigerantes.png" width="150px">
+                    <p>Refrigerante 2 litros</p>
+                    <p>R$9,00</p>
+                </div>
+                <div onclick="window.location.href='/produto'" id="prod2">
+                    <img src="../static/img/pao_de_queijo.png" width="150px">
+                    <p>Pão de Queijo</p>
+                    <p>R$2,00</p>
+                </div>
+                <div onclick="window.location.href='/produto'" id="prod3">
+                    <img src="../static/img/croissant.png" width="150px">
+                    <p>Croissant</p>
+                    <p>R$5,00</p>
+                </div>
+                <div onclick="window.location.href='/produto'" id="prod4">
+                    <img src="../static/img/refrigerantes.png" width="150px">
+                    <p>Refrigerante 2 litros</p>
+                    <p>R$9,00</p>
+                </div>
+                <div onclick="window.location.href='/produto'" id="prod2">
+                    <img src="../static/img/pao_de_queijo.png" width="150px">
+                    <p>Pão de Queijo</p>
+                    <p>R$2,00</p>
+                </div>
+                <div onclick="window.location.href='/produto'" id="prod3">
+                    <img src="../static/img/croissant.png" width="150px">
+                    <p>Croissant</p>
+                    <p>R$5,00</p>
+                </div>
+                <div onclick="window.location.href='/produto'" id="prod4">
+                    <img src="../static/img/refrigerantes.png" width="150px">
+                    <p>Refrigerante 2 litros</p>
+                    <p>R$9,00</p>
+                </div>
+                <div onclick="window.location.href='/produto'" id="prod2">
+                    <img src="../static/img/pao_de_queijo.png" width="150px">
+                    <p>Pão de Queijo</p>
+                    <p>R$2,00</p>
+                </div>
+                <div onclick="window.location.href='/produto'" id="prod3">
+                    <img src="../static/img/croissant.png" width="150px">
+                    <p>Croissant</p>
+                    <p>R$5,00</p>
+                </div>
+                <div onclick="window.location.href='/produto'" id="prod4">
+                    <img src="../static/img/refrigerantes.png" width="150px">
+                    <p>Refrigerante 2 litros</p>
+                    <p>R$9,00</p>
+                </div>
+            {% endif %}
         </div>
         <script src="https://kit.fontawesome.com/6a249e9f74.js" crossorigin="anonymous"></script>
     </body>
