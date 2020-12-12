@@ -18,6 +18,7 @@ from backend.database import show_client, add_client, add_product, show_all_prod
 
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 NOME_CLIENTE = 'Nome do cliente'
+CLIENT_NOT_FOUND = 'Cliente não encontrado'
 
 @app.route('/')
 @app.route('/home')
@@ -31,7 +32,7 @@ def home():
         logado = True
         client = show_client(session['client_cpf'])
         if not client:
-            nome = "Cliente não encontrado"
+            nome = CLIENT_NOT_FOUND
         else:
             nome = client[0][1]
         if client[0][4] == "12345678900" or client[0][4] == "112233445566":
@@ -107,7 +108,7 @@ def productadm():
         logado = True
         client = show_client(session['client_cpf'])
         if not client:
-            nome = "Cliente não encontrado"
+            nome = CLIENT_NOT_FOUND
         else:
             if client[0][4] != "12345678900" and client[0][4] != "112233445566":
                 return redirect(url_for('home'))
@@ -138,7 +139,7 @@ def productcreate():
             logado = True
             client = show_client(session['client_cpf'])
             if not client:
-                nome = "Cliente não encontrado"
+                nome = CLIENT_NOT_FOUND
             else:
                 if client[0][4] != "12345678900" and client[0][4] != "112233445566":
                     return redirect(url_for('home'))
@@ -165,7 +166,7 @@ def produto(prod_id):
         logado = True
         client = show_client(session['client_cpf'])
         if not client:
-            nome = "Cliente não encontrado"
+            nome = CLIENT_NOT_FOUND
         else:
             nome = client[0][1]
     return render_template(
@@ -184,7 +185,7 @@ def carrinho():
         logado = True
         client = show_client(session['client_cpf'])
         if not client:
-            nome = "Cliente não encontrado"
+            nome = CLIENT_NOT_FOUND
         else:
             nome = client[0][1]
     return render_template(
