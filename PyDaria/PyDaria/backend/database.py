@@ -27,7 +27,7 @@ cursor.execute("CREATE TABLE IF NOT EXISTS `Products` ( \
   `ID_Products` int(11) NOT NULL AUTO_INCREMENT, \
   `Price` float NOT NULL, \
   `Name` varchar(45) NOT NULL, \
-  `Picture` varchar(255) NOT NULL, \
+  `Picture` MEDIUMTEXT NOT NULL, \
   `Quantity` int(11) NOT NULL, \
   PRIMARY KEY (`ID_Products`) \
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;")
@@ -43,7 +43,7 @@ cursor.execute("CREATE TABLE IF NOT EXISTS`Carrinho` ( \
 
 
 # Adiciona um cliente no banco de dados apartir do cpf, email, nome e telefone
-def add_client(cpf: str, name: str, email: str, telephone: str, password: str, isAdmin: bool):
+def add_client(cpf: str, name: str, email: str, telephone: str, password: str, is_admin: bool):
 
     # Comando SQL a ser executado
     query = ("INSERT INTO Clients (Cpf, Name, Email, Telephone, Password, isAdmin) VALUES (%s, %s, %s, %s, %s, false);")
