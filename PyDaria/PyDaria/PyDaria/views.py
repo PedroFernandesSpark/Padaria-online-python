@@ -17,19 +17,20 @@ from backend.database import show_client, add_client, add_product, show_all_prod
 # add_product(name, price, img, qtd)
 
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
-
+NOME_CLIENTE = "Nome do cliente"
+CLIENT_NOT_FOUND = "Cliente não encontrado"
 
 @app.route('/')
 @app.route('/home')
 def home():
     "this will render the home page"
     logado = False
-    nome = 'Nome do cliente'
+    nome = NOME_CLIENTE
     if session and session['client_cpf']:
         logado = True
         client = show_client(session['client_cpf'])
         if not client:
-            nome = "Cliente não encontrado"
+            nome = CLIENT_NOT_FOUND
         else:
             nome = client[0][1]
         if client[0][4] == "12345678900" or client[0][4] == "112233445566":
@@ -54,7 +55,7 @@ def singup():
         telephone = request.form['phone']
         password = request.form['password']
         if not error:    
-            add_client(cpf,name,email,telephone,password)
+            add_client(cpf,name,email,telephone,password, False)
             return redirect(url_for('login'))
     if session and session['client_cpf']:
         return redirect(url_for('home'))
@@ -98,12 +99,12 @@ def login():
 @app.route('/backoffice/produtos')
 def productadm():
     logado = False
-    nome = 'Nome do cliente'
+    nome = NOME_CLIENTE
     if session and session['client_cpf']:
         logado = True
         client = show_client(session['client_cpf'])
         if not client:
-            nome = "Cliente não encontrado"
+            nome = CLIENT_NOT_FOUND
         else:
             if client[0][4] != "12345678900" and client[0][4] != "112233445566":
                 return redirect(url_for('home'))
@@ -120,19 +121,19 @@ def productadm():
 def productcreate():
     if request.method == 'POST':
         name = request.form['nome_produto']
-        descricao = request.form['descricao']
         img = request.form['image']
         qtd = request.form['stock']
+        price = request.form['price']
         add_product(name, price, img, qtd)
         return redirect(url_for("productadm"))
     else:
         logado = False
-        nome = 'Nome do cliente'
+        nome = NOME_CLIENTE
         if session and session['client_cpf']:
             logado = True
             client = show_client(session['client_cpf'])
             if not client:
-                nome = "Cliente não encontrado"
+                nome = CLIENT_NOT_FOUND
             else:
                 if client[0][4] != "12345678900" and client[0][4] != "112233445566":
                     return redirect(url_for('home'))
@@ -148,12 +149,12 @@ def productcreate():
 @app.route('/produto', methods=['GET','POST'])
 def produto():
     logado = False
-    nome = 'Nome do cliente'
+    nome = NOME_CLIENTE
     if session and session['client_cpf']:
         logado = True
         client = show_client(session['client_cpf'])
         if not client:
-            nome = "Cliente não encontrado"
+            nome = CLIENT_NOT_FOUND
         else:
             nome = client[0][1]
     return render_template(
@@ -166,12 +167,12 @@ def produto():
 @app.route('/carrinho', methods=['GET','POST'])
 def carrinho():
     logado = False
-    nome = 'Nome do cliente'
+    nome = NOME_CLIENTE
     if session and session['client_cpf']:
         logado = True
         client = show_client(session['client_cpf'])
         if not client:
-            nome = "Cliente não encontrado"
+            nome = CLIENT_NOT_FOUND
         else:
             nome = client[0][1]
     return render_template(
