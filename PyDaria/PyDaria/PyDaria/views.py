@@ -7,7 +7,7 @@ Routes and views for the flask application.
 from datetime import datetime
 from flask import render_template, request, redirect, url_for, session
 from PyDaria import app
-from backend.database import show_client, add_client, add_product, show_all_products
+from backend.database import show_client, add_client, add_product, show_all_products, show_product
 
 # Definição das funções do database.py:
 
@@ -156,6 +156,12 @@ def productcreate():
 def produto(prod_id):
     logado = False
     nome = 'Nome do cliente'
+    error = None
+    produto = show_product(prod_id)
+    if not produto or not produto[0]:
+        error="Produto Inexistente"
+    else:
+        produto = produto[0]
     if session and session['client_cpf']:
         logado = True
         client = show_client(session['client_cpf'])
@@ -167,8 +173,8 @@ def produto(prod_id):
         'produto.html',
         logado=logado,
         nome=nome,
-        prod_id=prod_id,
-        produto=produto
+        produto=produto,
+        error=error
     )
 
 @app.route('/carrinho', methods=['GET','POST'])

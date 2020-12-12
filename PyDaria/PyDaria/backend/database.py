@@ -43,7 +43,7 @@ cursor.execute("CREATE TABLE IF NOT EXISTS`Carrinho` ( \
 
 
 # Adiciona um cliente no banco de dados apartir do cpf, email, nome e telefone
-def add_client(cpf: str, name: str, email: str, telephone: str, password: str, isAdmin: bool):
+def add_client(cpf: str, name: str, email: str, telephone: str, password: str):
 
     # Comando SQL a ser executado
     query = ("INSERT INTO Clients (Cpf, Name, Email, Telephone, Password, isAdmin) VALUES (%s, %s, %s, %s, %s, false);")
@@ -240,9 +240,9 @@ def show_product(id_product: int):
     # Agrupa os dados em uma tupla
     result = cursor.fetchall()
 
-    # Imprime o resulado em um terminal
-    for i in result:
-        print(i)
+    # Imprime o resultado em um terminal
+    #for i in result:
+        #print(i)
 
     # Retorna a tupla
     return result
