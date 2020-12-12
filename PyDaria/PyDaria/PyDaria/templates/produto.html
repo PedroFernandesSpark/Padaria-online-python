@@ -54,7 +54,7 @@
                     <div class="my-3"><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloremque,
                          doloribus unde excepturi sit quas nobis nisi magni numquam sequi et,
                           laborum earum voluptates! Nihil sapiente minus quae assumenda quas harum!</p></div>
-                    <h3>Preço: <span style="color:green">{{produto[1]}}</span></h3>
+                    <h3>Preço: <span style="color:green" id="price_prod{{produto[0]}}">{{produto[1]}}</span></h3>
                     <form>
                         <div class="form-group">
                             <div class="mt-5 mb-4"><h3>Quantidade</h3></div>
@@ -63,8 +63,19 @@
                           </div>
                     </form>
                 </div>
-
             </div>
+            <script>
+                let price = document.querySelector("#price_prod{{produto[0]}}");
+                let price_text = price.innerHTML;
+                price_text = price_text.replace(".", ",");
+                let position = price_text.indexOf(",");
+                if(position == price_text.length - 2){
+                    price_text = price_text + "0";
+                }
+                price_text = "R$ " + price_text;
+                price.innerHTML = price_text;
+                
+            </script>
         </div>
         <script src="https://kit.fontawesome.com/6a249e9f74.js" crossorigin="anonymous"></script>
     </body>
