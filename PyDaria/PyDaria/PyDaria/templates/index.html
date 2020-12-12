@@ -58,9 +58,25 @@
                     <div onclick="window.location.href='/prod/{{produto[0]}}'">
                         <img src="{{produto[3]}}" width="150px">
                         <p>{{produto[2]}}</p>
-                        <p>{{produto[1]}}</p>
+                        <p id="price_prod{{produto[0]}}">{{produto[1]}}</p>
                     </div>
                 {% endfor%}
+                <script>
+                    let price;
+                    let price_text;
+                    let position;
+                    {% for produto in produtos %}
+                        price = document.querySelector("#price_prod{{produto[0]}}");
+                        price_text = price.innerHTML;
+                        price_text = price_text.replace(".", ",");
+                        position = price_text.indexOf(",");
+                        if(position == price_text.length - 2){
+                            price_text = price_text + "0";
+                        }
+                        price_text = "R$ " + price_text;
+                        price.innerHTML = price_text;
+                    {% endfor %}
+                </script>
             {% else %}
                 <div onclick="window.location.href='/produto'" id="prod1">
                     <img src="../static/img/pao.png" width="150px">

@@ -60,7 +60,7 @@
               {% for produto in produtos %}
                 <tr>
                   <td>{{produto[2]}}</td>
-                  <td>{{produto[1]}}</td>
+                  <td id="price_prod{{produto[0]}}">{{produto[1]}}</td>
                   <td>{{produto[4]}}</td>
                   <td><a href="backoffice/editar/"></a><button type="button" class="btn btn-primary">Editar</button></a></td>
                   <td><button type="button" class="btn btn-danger">Deletar</button></td>
@@ -70,6 +70,22 @@
           </table>
           <td><a href="produtos/create" type="button" class="btn btn-success">Novo Produto</a></td>
     </div>
+    <script>
+      let price;
+      let price_text;
+      let position;
+      {% for produto in produtos %}
+        price = document.querySelector("#price_prod{{produto[0]}}");
+        price_text = price.innerHTML;
+        price_text = price_text.replace(".", ",");
+        position = price_text.indexOf(",");
+        if(position == price_text.length - 2){
+            price_text = price_text + "0";
+        }
+        price_text = "R$ " + price_text;
+        price.innerHTML = price_text;
+      {% endfor %}
+    </script>
     <br />
     <br />
     <div class="footer mt-5">

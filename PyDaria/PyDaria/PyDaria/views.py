@@ -127,6 +127,9 @@ def productcreate():
     if request.method == 'POST' and request.form:
         name = request.form['nome_produto']
         price = request.form['preco']
+        if "," in price:
+            price = price.replace(",", ".")
+        price = float(price)
         img = request.form['image']
         descricao = request.form['descricao']
         qtd = request.form['stock']
