@@ -2,7 +2,7 @@ import mysql.connector
 from flask import make_response
 
 # Conencta no banco de dados
-db = mysql.connector.connect(host="localhost", user="root",password="mp2020@@")
+db = mysql.connector.connect(host="localhost", user="root",password="Mp2020@@")
 
 # Gera um cursos que será responsável por realizar as ações
 cursor = db.cursor()

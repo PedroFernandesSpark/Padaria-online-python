@@ -47,6 +47,7 @@
             </nav>
             <br>
             <br>
+            {% if produto %}
             <div class="produto_container mt-5" style="display: flex; flex-flow: row;">
                 <img src="{{produto[3]}}" style="margin-left: 5%;" width="500px">
                 <div class="text_container mt-5 p-3" style="width: 40%; margin-left: 5%;">
@@ -62,6 +63,9 @@
                     </form>
                 </div>
             </div>
+            {% else %}
+            <h1>Produto não encontrado!</h1>
+            {% endif %}
             <script>
                 let price = document.querySelector("#price_prod{{produto[0]}}");
                 let price_text = price.innerHTML;
