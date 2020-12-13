@@ -27,8 +27,9 @@ cursor.execute("CREATE TABLE IF NOT EXISTS `Products` ( \
   `ID_Products` int(11) NOT NULL AUTO_INCREMENT, \
   `Price` float NOT NULL, \
   `Name` varchar(45) NOT NULL, \
-  `Picture` varchar(255) NOT NULL, \
+  `Picture` MEDIUMTEXT NOT NULL, \
   `Quantity` int(11) NOT NULL, \
+  `Description` varchar(255) NOT NULL, \
   PRIMARY KEY (`ID_Products`) \
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;")
 
@@ -43,7 +44,7 @@ cursor.execute("CREATE TABLE IF NOT EXISTS`Carrinho` ( \
 
 
 # Adiciona um cliente no banco de dados apartir do cpf, email, nome e telefone
-def add_client(cpf: str, name: str, email: str, telephone: str, password: str, isAdmin: bool):
+def add_client(cpf: str, name: str, email: str, telephone: str, password: str):
 
     # Comando SQL a ser executado
     query = ("INSERT INTO Clients (Cpf, Name, Email, Telephone, Password, isAdmin) VALUES (%s, %s, %s, %s, %s, false);")
@@ -93,7 +94,7 @@ def show_client(cpf: str):
     # Agrupa os dados em uma tupla
     result = cursor.fetchall()
 
-    # Imprime o resulado em um terminal
+    # Imprime o resultado em um terminal
     for i in result:
         print(i)
 
@@ -190,13 +191,13 @@ def update_n_client(cpf: str, new_val: str):
     return True
 
 # Adiciona produtos no banco de dados
-def add_product(name: str, price: float, img: str, qtd: int):
+def add_product(name: str, price: float, img: str, qtd: int, description: str):
        
     # Comando SQL a ser executado
-    query = ("INSERT INTO Products (Name, Price, Picture, Quantity) VALUES (%s, %s, %s, %s);")
+    query = ("INSERT INTO Products (Name, Price, Picture, Quantity, Description) VALUES (%s, %s, %s, %s, %s);")
     
     # Valores a serem adicionados
-    val = (name, price, img, qtd)
+    val = (name, price, img, qtd, description)
 
     # Executa o comando
     cursor.execute(query, val)
@@ -222,8 +223,8 @@ def show_all_products():
     result = cursor.fetchall()
     
     # Imprime o resultado em um terminal
-    for i in result:
-        print(i)
+    #for i in result:
+        #print(i)
     
     # Retorna as tuplas
     return result
@@ -240,9 +241,9 @@ def show_product(id_product: int):
     # Agrupa os dados em uma tupla
     result = cursor.fetchall()
 
-    # Imprime o resulado em um terminal
-    for i in result:
-        print(i)
+    # Imprime o resultado em um terminal
+    #for i in result:
+        #print(i)
 
     # Retorna a tupla
     return result
@@ -414,8 +415,8 @@ def complete_purchase(cpf: str):
     
     rmv_cart(cpf)
 
-# Remove tudo
-def rmv_everything():
+# Remove os dados
+def rmv_data():
     query = ("DELETE FROM Clients;")
     cursor.execute(query)
     db.commit()
@@ -428,3 +429,21 @@ def rmv_everything():
     cursor.execute(query)
     db.commit()
 
+# Apaga as tabelas
+def rmv_tables():
+    query = ("DROP TABLE Clients;")
+    cursor.execute(query)
+    db.commit()
+
+    query = ("DROP TABLE Products;")
+    cursor.execute(query)
+    db.commit()
+
+    query = ("DROP TABLE Carrinho;")
+    cursor.execute(query)
+    db.commit()
+
+# Remove tudo
+def rmv_everything():
+    rmv_data()
+    rmv_tables() 

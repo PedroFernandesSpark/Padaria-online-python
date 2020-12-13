@@ -15,7 +15,7 @@ banco de dados
 from datetime import datetime
 from flask import render_template, request, redirect, url_for, session
 from PyDaria import app
-from backend.database import show_client, add_client, add_product, show_all_products
+from backend.database import show_client, add_client, add_product, show_all_products, show_product, add_to_cart
 
 """
 Definição das funções do database.py:
@@ -23,10 +23,21 @@ Definição das funções do database.py:
 add_client(cpf, name, email, telephone, password)
 
 show_client(cpf) return: ((id, name, email, telephone, cpf, isAdmin, password))
-add_product(name, price, img, qtd)
-"""
-app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
+add_product(name, price, img, qtd, description)
+
+show_all_products() return: ((id, price, name, img, qtd, description), (id, price, ...), ...)
+
+show_product(id_produto) return: ((id, price, name, img, qtd, description))
+
+add_to_cart(cpf, id_produto, quantidade)
+"""
+
+# add_to_cart(cpf, id_produto, quantidade)
+
+app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
+NOME_CLIENTE = 'Nome do cliente'
+CLIENT_NOT_FOUND = 'Cliente não encontrado'
 
 @app.route('/')
 @app.route('/home')
@@ -43,8 +54,9 @@ def home():
     titulo da pagina e se o usuario está ou não logado.
     """
     logado = False
-    nome = 'Nome do cliente'
-    
+    nome = NOME_CLIENTE
+    admin = False
+    produtos = show_all_products()
     if session and session['client_cpf']:
         """
         verifica se existe uma sessão e se ela possui um cpf
@@ -54,8 +66,8 @@ def home():
         if not client:
             """
             Se o cliente não existir, nome fica como 'cliente não encontrado'
-            """    
-            nome = "Cliente não encontrado"
+            """
+            nome = CLIENT_NOT_FOUND
         else:
             """
             Se não, ele atribui ao nome o nome do cliente que vem como client[0][1]
@@ -63,14 +75,16 @@ def home():
             nome = client[0][1]
         if client[0][4] == "12345678900" or client[0][4] == "112233445566":
             """
-            verifica se o usuario é admin, caso seja o redireciona para o backlog
+                Checa se o usuário é admin, se for, manda essa informação para o site
             """
-            return redirect(url_for('productadm'))
+            admin = True
     return render_template(
         'index.html',
         title='Home Page',
         logado=logado,
         nome=nome,
+        admin=admin,
+        produtos=produtos,
         year=datetime.now().year,
     )
     """
@@ -212,7 +226,7 @@ def productadm():
     Assertiva de Saida: Se o metodo for get será renderizaro um arquivo html da página backoffice de produtos
     """
     logado = False
-    nome = 'Nome do cliente'
+    nome = NOME_CLIENTE
     if session and session['client_cpf']:
 
         """
@@ -224,7 +238,7 @@ def productadm():
             """
             Verifica se a sessão possui um valor de cpf
             """
-            nome = "Cliente não encontrado"
+            nome = CLIENT_NOT_FOUND
         else:
             if client[0][4] != "12345678900" and client[0][4] != "112233445566":
                 """
@@ -235,13 +249,15 @@ def productadm():
                 """
                 return redirect(url_for('home'))
             nome = client[0][1]
-        """
-        Retorna o render da pagina.
-        """
+    """
+    Retorna o render da pagina.
+    """
+    produtos = show_all_products()
     return render_template(
         'backoffice_product.html',
         title='Backoffice dos produtos',
         logado = logado,
+        produtos=produtos,
         nome = nome,
         year=datetime.now().year,
     )
@@ -261,15 +277,21 @@ def productcreate():
     Assertiva de Saida: Se o metodo for get será renderizaro um arquivo html da página backoffice de produtos,
     se for post ele insere no banco de dados os valores passados no body do post.
     """
-    if request.method == 'POST':
+    if request.method == 'POST' and request.form:
         """
         Verifica se o metodo é post.
         """
         name = request.form['nome_produto']
-        descricao = request.form['descricao']
+        price = request.form['preco']
+        if "," in price:
+            price = price.replace(",", ".")
+        price = float(price)
         img = request.form['image']
         qtd = request.form['stock']
-        add_product(name, price, img, qtd)
+        desc = request.form['descricao']
+        if not desc:
+            desc = "Sem Descrição"
+        add_product(name, price, img, qtd, desc)
         """
         redireciona para a pagina de administração dos produtos.
         """
@@ -279,28 +301,27 @@ def productcreate():
         Caso o metodo não seja post. (logo ele sera get).
         """
         logado = False
-        nome = 'Nome do cliente'
+        nome = NOME_CLIENTE
         if session and session['client_cpf']:
             """
             Verifica se o user esta logado.
             """
             logado = True
             client = show_client(session['client_cpf'])
+            if client[0][4] != "12345678900" and client[0][4] != "112233445566":
+                """
+                Verifica se o user não é admin.
+                """
+                """
+                Retorna o redirect para a home page caso o user n seja o admin.
+                """
+                return redirect(url_for('home'))
+            nome = client[0][1]
             if not client:
                 """
                 Verifica se o cpf esta presente na session.
                 """
-                nome = "Cliente não encontrado"
-            else:
-                if client[0][4] != "12345678900" and client[0][4] != "112233445566":
-                    """
-                    Verifica se o user não é admin.
-                    """
-                    """
-                    Retorna o redirect para a home page caso o user n seja o admin.
-                    """
-                    return redirect(url_for('home'))
-                nome = client[0][1]
+                nome = CLIENT_NOT_FOUND
         """
         Retorna o render da pagina.
         """
@@ -312,12 +333,12 @@ def productcreate():
             year=datetime.now().year,
         )
 
-@app.route('/produto', methods=['GET','POST'])
-def produto():
+@app.route('/prod/<prod_id>', methods=['GET','POST'])
+def produto(prod_id):
     """
     Função: Renderizar a pagina de produto.
 
-    Descrição: Caso a rota seja baseURL + /produto renderiza o html do produto e da a opção para adicionar o produto ao carrinho.
+    Descrição: Caso a rota seja baseURL + /prod/<prod_id> renderiza o html do produto com prod_id e da a opção para adicionar o produto ao carrinho.
 
     Valor retornado: renderiza o html da pagina do produto selecionado.
 
@@ -326,7 +347,13 @@ def produto():
     Assertiva de Saida: renderiza um html para o produto selecionado.
     """
     logado = False
-    nome = 'Nome do cliente'
+    nome = NOME_CLIENTE
+    error = None
+    produto = show_product(prod_id)
+    if not produto or not produto[0]:
+        error="Produto Inexistente"
+    else:
+        produto = produto[0]
     if session and session['client_cpf']:
         """
         Verifica se o user esta logado.
@@ -337,7 +364,7 @@ def produto():
             """
             Verifica se o cpf esta presente na session.
             """
-            nome = "Cliente não encontrado"
+            nome = CLIENT_NOT_FOUND
         else:
             nome = client[0][1]
     """
@@ -347,7 +374,8 @@ def produto():
         'produto.html',
         logado=logado,
         nome=nome,
-        produto=produto
+        produto=produto,
+        error=error
     )
 
 @app.route('/carrinho', methods=['GET','POST'])
@@ -364,15 +392,15 @@ def carrinho():
     Assertiva de Saida: renderiza um html para o carrinho.
     """
     logado = False
-    nome = 'Nome do cliente'
+    nome = NOME_CLIENTE
     if session and session['client_cpf']:
         logado = True
         client = show_client(session['client_cpf'])
         if not client:
             """
-            Verfica se o usuario esta logado.
+            Verifica se o usuario esta logado.
             """
-            nome = "Cliente não encontrado"
+            nome = CLIENT_NOT_FOUND
         else:
             nome = client[0][1]
     """
