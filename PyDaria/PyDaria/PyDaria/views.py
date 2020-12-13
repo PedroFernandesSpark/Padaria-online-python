@@ -141,12 +141,11 @@ def productcreate():
         if session and session['client_cpf']:
             logado = True
             client = show_client(session['client_cpf'])
+            if client[0][4] != "12345678900" and client[0][4] != "112233445566":
+                return redirect(url_for('home'))
+            nome = client[0][1]
             if not client:
                 nome = CLIENT_NOT_FOUND
-            else:
-                if client[0][4] != "12345678900" and client[0][4] != "112233445566":
-                    return redirect(url_for('home'))
-                nome = client[0][1]
         return render_template(
             'backoffice_product_create.html',
             title='Backoffice dos produtos',
