@@ -7,14 +7,21 @@ Routes and views for the flask application.
 from datetime import datetime
 from flask import render_template, request, redirect, url_for, session
 from PyDaria import app
-from backend.database import show_client, add_client, add_product, show_all_products, show_product
+from backend.database import show_client, add_client, add_product, show_all_products, show_product, add_to_cart
 
-# Definição das funções do database.py:
+# Definições das funções do database.py:
 
 # add_client(cpf, name, email, telephone, password)
 
 # show_client(cpf) return: ((id, name, email, telephone, cpf, isAdmin, password))
-# add_product(name, price, img, qtd)
+
+# add_product(name, price, img, qtd, description)
+
+# show_all_products()
+
+# show_product(id_produto)
+
+# add_to_cart(cpf, id_produto, quantidade)
 
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 NOME_CLIENTE = 'Nome do cliente'
@@ -133,7 +140,10 @@ def productcreate():
         price = float(price)
         img = request.form['image']
         qtd = request.form['stock']
-        add_product(name, price, img, qtd)
+        desc = request.form['descricao']
+        if not desc:
+            desc = "Sem Descrição"
+        add_product(name, price, img, qtd, desc)
         return redirect(url_for("productadm"))
     else:
         logado = False
