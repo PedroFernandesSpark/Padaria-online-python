@@ -46,36 +46,36 @@ def home():
     nome = 'Nome do cliente'
     
     if session and session['client_cpf']:
-    """
-    verifica se existe uma sessão e se ela possui um cpf
-    """
+        """
+        verifica se existe uma sessão e se ela possui um cpf
+        """
         logado = True
         client = show_client(session['client_cpf'])
         if not client:
-        """
-        Se o cliente não existir, nome fica como 'cliente não encontrado'
-        """    
+            """
+            Se o cliente não existir, nome fica como 'cliente não encontrado'
+            """    
             nome = "Cliente não encontrado"
         else:
-        """
-        Se não, ele atribui ao nome o nome do cliente que vem como client[0][1]
-        """
+            """
+            Se não, ele atribui ao nome o nome do cliente que vem como client[0][1]
+            """
             nome = client[0][1]
         if client[0][4] == "12345678900" or client[0][4] == "112233445566":
-        """
-        verifica se o usuario é admin, caso seja o redireciona para o backlog
-        """
+            """
+            verifica se o usuario é admin, caso seja o redireciona para o backlog
+            """
             return redirect(url_for('productadm'))
     return render_template(
-    """
-    Renderiza o template
-    """
         'index.html',
         title='Home Page',
         logado=logado,
         nome=nome,
         year=datetime.now().year,
     )
+    """
+    Renderiza o template
+    """
 
 @app.route('/signin', methods=['GET', 'POST'])
 def singup():
@@ -340,7 +340,7 @@ def produto():
             nome = "Cliente não encontrado"
         else:
             nome = client[0][1]
-     """
+    """
     Retorna o render da pagina.
     """
     return render_template(
