@@ -15,7 +15,7 @@ banco de dados
 from datetime import datetime
 from flask import render_template, request, redirect, url_for, session
 from PyDaria import app
-from backend.database import show_client, add_client, add_product, show_all_products, show_product, add_to_cart
+from backend.database import show_client, add_client, add_product, show_all_products, show_product, add_to_cart, show_cart, show_cart_val, rmv_from_cart
 
 """
 Definição das funções do database.py:
@@ -31,9 +31,13 @@ show_all_products() return: ((id, price, name, img, qtd, description), (id, pric
 show_product(id_produto) return: ((id, price, name, img, qtd, description))
 
 add_to_cart(cpf, id_produto, quantidade)
-"""
 
-# add_to_cart(cpf, id_produto, quantidade)
+show_cart(cpf) return: ((cpf, qtd, id_produto, preco_unitario, preco_total), (cpf, qtd, ...), ...)
+
+show_cart_val(cpf) return: int valor total
+
+rmv_from_cart(cpf, id_produto)
+"""
 
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 NOME_CLIENTE = 'Nome do cliente'
@@ -378,6 +382,38 @@ def produto(prod_id):
         error=error
     )
 
+@app.route('/prod/<prod_id>/add', methods=['POST'])
+def add_produto(prod_id):
+    """
+    Função: Adicionar o produto com id prod_id ao carrinho.
+
+    Descrição: Caso a rota seja baseURL + /prod/<prod_id>/add adiciona o produto ao carrinho com o cpf do cliente, id do produto e quantidade.
+
+    Valor retornado: retorna para a página index para o cliente comprar mais produtos.
+
+    Assertiva de entrada: aceita o metodo post, id_prod tem um produto no banco de dados correspondente, o usuário está logado e a quantidade é maior do que 1.
+
+    Assertiva de Saida: adiciona o cpf, o prod_id e a quantidade no banco de dados do carrinho.
+    """
+    produto = show_product(prod_id)
+    produto = produto[0]
+    if produto and request.method == "POST" and request.form:
+        quantidade = int(request.form['quantidade'])
+        if int(quantidade) <= 0:
+            error = "Coloque pelo menos um item no carrinho!"
+        elif produto[4] <= 0:
+            error = "Produto Indisponível"
+        elif not session["client_cpf"]:
+            error = "Cliente não logado"
+        else:
+            carrinho = show_cart(session['client_cpf'])
+            for produto in carrinho:
+                if produto[2] == int(prod_id) and produto[0] == session['client_cpf']:
+                    quantidade = quantidade + produto[1]
+                    rmv_from_cart(session['client_cpf'], int(prod_id))
+                    break
+            add_to_cart(session["client_cpf"], prod_id, quantidade)
+            return redirect(url_for('carrinho'))
 @app.route('/carrinho', methods=['GET','POST'])
 def carrinho():
     """
@@ -393,6 +429,9 @@ def carrinho():
     """
     logado = False
     nome = NOME_CLIENTE
+    carrinho = None
+    total = None
+    produtos = {}
     if session and session['client_cpf']:
         logado = True
         client = show_client(session['client_cpf'])
@@ -403,6 +442,11 @@ def carrinho():
             nome = CLIENT_NOT_FOUND
         else:
             nome = client[0][1]
+    if logado:
+        carrinho = show_cart(session['client_cpf'])
+        for produto in carrinho:
+            produtos[produto[2]] = show_product(produto[2])[0]
+        total = show_cart_val(session['client_cpf'])
     """
     Retorna o render da pagina.
     """
@@ -410,8 +454,23 @@ def carrinho():
         'carrinho.html',
         logado=logado,
         nome=nome,
-        carrinho=carrinho
+        carrinho=carrinho,
+        produtos=produtos,
+        total=total
     )
+
+@app.route('/cart/delete/<prod_id>')
+def delete_from_cart(prod_id):
+    if session and session['client_cpf']:
+        carrinho = show_cart(session['client_cpf'])
+        for produto in carrinho:
+            if produto[2] == int(prod_id):
+                rmv_from_cart(session['client_cpf'], int(prod_id))
+                return redirect(url_for('carrinho'))
+        return redirect(url_for('carrinho'))
+
+    else:
+        return redirect(url_for('home'))
 
 @app.route('/logout')
 def logout():

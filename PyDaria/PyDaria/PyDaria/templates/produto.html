@@ -53,12 +53,12 @@
                     <div class="mb-4"><h1>{{produto[2]}}</h1></div>
                     <div class="my-3"><p>{{produto[5]}}</p></div>
                     <h3>Preço: <span style="color:green" id="price_prod{{produto[0]}}">{{produto[1]}}</span></h3>
-                    <form>
+                    <form action="/prod/{{produto[0]}}/add" method="POST">
                         <div class="form-group">
                             <div class="mt-5 mb-4"><h3>Quantidade</h3></div>
                             <input type="number" class="form-control" id="quant" name="quantidade" aria-describedby="emailHelp" min="1" value="1" placeholder="1" style="width:52%;">
-                            <button type="button" class="btn btn-success mt-3"><em class="fas fa-shopping-bag mr-3" style="width: 10px;"></em>Adicionar ao carrinho</button>
-                          </div>
+                            <button type="submit" class="btn btn-success mt-3"><em class="fas fa-shopping-bag mr-3" style="width: 10px;"></em>Adicionar ao carrinho</button>
+                        </div>
                     </form>
                 </div>
             </div>
