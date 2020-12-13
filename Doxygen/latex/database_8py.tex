@@ -1,0 +1,67 @@
+\hypertarget{database_8py}{}\doxysection{Py\+Daria/backend/database.py File Reference}
+\label{database_8py}\index{PyDaria/backend/database.py@{PyDaria/backend/database.py}}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespacedatabase}{database}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespacedatabase_ab3964cec72dde3b289382003e4909463}{database.\+add\+\_\+client}} (str cpf, str name, str email, str telephone, str password)
+\item 
+def \mbox{\hyperlink{namespacedatabase_af9dacaeec00fbcd719aa5c1b8b50f040}{database.\+add\+\_\+admin}} (str cpf, str name, str email, str telephone, str password)
+\item 
+def \mbox{\hyperlink{namespacedatabase_aa523e9dfb731009fc9306123d1d07d8f}{database.\+show\+\_\+all\+\_\+clients}} ()
+\item 
+def \mbox{\hyperlink{namespacedatabase_a27be90f09ec97fe93e4702971fbaa90d}{database.\+show\+\_\+client}} (str cpf)
+\item 
+def \mbox{\hyperlink{namespacedatabase_a6df45ea8f255c0a91462206fcf7440f3}{database.\+rmv\+\_\+client}} (str cpf)
+\item 
+def \mbox{\hyperlink{namespacedatabase_a1f64659351032c1c4e52600d995a1a84}{database.\+update\+\_\+p\+\_\+client}} (str cpf, str new\+\_\+val)
+\item 
+def \mbox{\hyperlink{namespacedatabase_a688a13145e3b83b367a2ced391b23eb6}{database.\+update\+\_\+e\+\_\+client}} (str cpf, str new\+\_\+val)
+\item 
+def \mbox{\hyperlink{namespacedatabase_a2877b3a88935f666ed3af407df91278d}{database.\+update\+\_\+t\+\_\+client}} (str cpf, str new\+\_\+val)
+\item 
+def \mbox{\hyperlink{namespacedatabase_a3a378c2a1853c09c656fb47fa446f30d}{database.\+update\+\_\+n\+\_\+client}} (str cpf, str new\+\_\+val)
+\item 
+def \mbox{\hyperlink{namespacedatabase_a4846d9e6b9d7f4d1b607d2fb028967ec}{database.\+add\+\_\+product}} (str name, float price, str img, int qtd, str description)
+\item 
+def \mbox{\hyperlink{namespacedatabase_aa43b1bab1e2c64ce3c0ad3739943bf30}{database.\+show\+\_\+all\+\_\+products}} ()
+\item 
+def \mbox{\hyperlink{namespacedatabase_a60092e4a2650587682e5b5c990709ccb}{database.\+show\+\_\+product}} (int id\+\_\+product)
+\item 
+def \mbox{\hyperlink{namespacedatabase_ac0a38dc6ee2a3beb0ab2b2d2e8122c3d}{database.\+rmv\+\_\+product}} (int id\+\_\+product)
+\item 
+def \mbox{\hyperlink{namespacedatabase_a25ccca98eec206208dec313ad72cdd2a}{database.\+update\+\_\+p\+\_\+product}} (int id\+\_\+product, float new\+\_\+val)
+\item 
+def \mbox{\hyperlink{namespacedatabase_a9f428a18d6de07192d9eec3afb6056a3}{database.\+update\+\_\+q\+\_\+product}} (int id\+\_\+product, int new\+\_\+val)
+\item 
+def \mbox{\hyperlink{namespacedatabase_af575219a2da6e7cbdafccec863363605}{database.\+add\+\_\+to\+\_\+cart}} (str cpf, int id\+\_\+product, int quantity)
+\item 
+def \mbox{\hyperlink{namespacedatabase_ace15b1b3cc33a6e68400cc588bca34d6}{database.\+show\+\_\+cart}} (str cpf)
+\item 
+def \mbox{\hyperlink{namespacedatabase_aabbd2490659e7f475fcc05e900508f0b}{database.\+show\+\_\+cart\+\_\+val}} (str cpf)
+\item 
+def \mbox{\hyperlink{namespacedatabase_aef2b66157a74a37f7e875fcb5c07e877}{database.\+rmv\+\_\+from\+\_\+cart}} (str cpf, int id\+\_\+product)
+\item 
+def \mbox{\hyperlink{namespacedatabase_a1abfaa4bd83b6ab9edd5a01d67aefcb7}{database.\+rmv\+\_\+cart}} (str cpf)
+\item 
+def \mbox{\hyperlink{namespacedatabase_a06180f946f9794cbac27117edcfda659}{database.\+complete\+\_\+purchase}} (str cpf)
+\item 
+def \mbox{\hyperlink{namespacedatabase_a6a070a7822fb9868cd341ee7d4fed992}{database.\+rmv\+\_\+data}} ()
+\item 
+def \mbox{\hyperlink{namespacedatabase_a5db9d10e63767c218137517a8d7d3390}{database.\+rmv\+\_\+tables}} ()
+\item 
+def \mbox{\hyperlink{namespacedatabase_a3934a0bd6f46dbacc0524328fa45f857}{database.\+rmv\+\_\+everything}} ()
+\item 
+def \mbox{\hyperlink{namespacedatabase_a0f4e6af6cc5c61545b3daedeeee981a4}{database.\+error\+\_\+msg}} (err)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacedatabase_ae1f424018e81011f5382b6f8edc7ac86}{database.\+db}} = mysql.\+connector.\+connect(host=\char`\"{}localhost\char`\"{}, user=\char`\"{}root\char`\"{},password=\char`\"{}mp2020@@\char`\"{})
+\item 
+\mbox{\hyperlink{namespacedatabase_ae86c30cd3956d5d3765a0061c84768f5}{database.\+cursor}} = db.\+cursor()
+\end{DoxyCompactItemize}

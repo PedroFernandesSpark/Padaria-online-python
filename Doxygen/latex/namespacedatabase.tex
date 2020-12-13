@@ -1,0 +1,230 @@
+\hypertarget{namespacedatabase}{}\doxysection{database Namespace Reference}
+\label{namespacedatabase}\index{database@{database}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespacedatabase_ab3964cec72dde3b289382003e4909463}{add\+\_\+client}} (str cpf, str name, str email, str telephone, str password)
+\item 
+def \mbox{\hyperlink{namespacedatabase_af9dacaeec00fbcd719aa5c1b8b50f040}{add\+\_\+admin}} (str cpf, str name, str email, str telephone, str password)
+\item 
+def \mbox{\hyperlink{namespacedatabase_aa523e9dfb731009fc9306123d1d07d8f}{show\+\_\+all\+\_\+clients}} ()
+\item 
+def \mbox{\hyperlink{namespacedatabase_a27be90f09ec97fe93e4702971fbaa90d}{show\+\_\+client}} (str cpf)
+\item 
+def \mbox{\hyperlink{namespacedatabase_a6df45ea8f255c0a91462206fcf7440f3}{rmv\+\_\+client}} (str cpf)
+\item 
+def \mbox{\hyperlink{namespacedatabase_a1f64659351032c1c4e52600d995a1a84}{update\+\_\+p\+\_\+client}} (str cpf, str new\+\_\+val)
+\item 
+def \mbox{\hyperlink{namespacedatabase_a688a13145e3b83b367a2ced391b23eb6}{update\+\_\+e\+\_\+client}} (str cpf, str new\+\_\+val)
+\item 
+def \mbox{\hyperlink{namespacedatabase_a2877b3a88935f666ed3af407df91278d}{update\+\_\+t\+\_\+client}} (str cpf, str new\+\_\+val)
+\item 
+def \mbox{\hyperlink{namespacedatabase_a3a378c2a1853c09c656fb47fa446f30d}{update\+\_\+n\+\_\+client}} (str cpf, str new\+\_\+val)
+\item 
+def \mbox{\hyperlink{namespacedatabase_a4846d9e6b9d7f4d1b607d2fb028967ec}{add\+\_\+product}} (str name, float price, str img, int qtd, str description)
+\item 
+def \mbox{\hyperlink{namespacedatabase_aa43b1bab1e2c64ce3c0ad3739943bf30}{show\+\_\+all\+\_\+products}} ()
+\item 
+def \mbox{\hyperlink{namespacedatabase_a60092e4a2650587682e5b5c990709ccb}{show\+\_\+product}} (int id\+\_\+product)
+\item 
+def \mbox{\hyperlink{namespacedatabase_ac0a38dc6ee2a3beb0ab2b2d2e8122c3d}{rmv\+\_\+product}} (int id\+\_\+product)
+\item 
+def \mbox{\hyperlink{namespacedatabase_a25ccca98eec206208dec313ad72cdd2a}{update\+\_\+p\+\_\+product}} (int id\+\_\+product, float new\+\_\+val)
+\item 
+def \mbox{\hyperlink{namespacedatabase_a9f428a18d6de07192d9eec3afb6056a3}{update\+\_\+q\+\_\+product}} (int id\+\_\+product, int new\+\_\+val)
+\item 
+def \mbox{\hyperlink{namespacedatabase_af575219a2da6e7cbdafccec863363605}{add\+\_\+to\+\_\+cart}} (str cpf, int id\+\_\+product, int quantity)
+\item 
+def \mbox{\hyperlink{namespacedatabase_ace15b1b3cc33a6e68400cc588bca34d6}{show\+\_\+cart}} (str cpf)
+\item 
+def \mbox{\hyperlink{namespacedatabase_aabbd2490659e7f475fcc05e900508f0b}{show\+\_\+cart\+\_\+val}} (str cpf)
+\item 
+def \mbox{\hyperlink{namespacedatabase_aef2b66157a74a37f7e875fcb5c07e877}{rmv\+\_\+from\+\_\+cart}} (str cpf, int id\+\_\+product)
+\item 
+def \mbox{\hyperlink{namespacedatabase_a1abfaa4bd83b6ab9edd5a01d67aefcb7}{rmv\+\_\+cart}} (str cpf)
+\item 
+def \mbox{\hyperlink{namespacedatabase_a06180f946f9794cbac27117edcfda659}{complete\+\_\+purchase}} (str cpf)
+\item 
+def \mbox{\hyperlink{namespacedatabase_a6a070a7822fb9868cd341ee7d4fed992}{rmv\+\_\+data}} ()
+\item 
+def \mbox{\hyperlink{namespacedatabase_a5db9d10e63767c218137517a8d7d3390}{rmv\+\_\+tables}} ()
+\item 
+def \mbox{\hyperlink{namespacedatabase_a3934a0bd6f46dbacc0524328fa45f857}{rmv\+\_\+everything}} ()
+\item 
+def \mbox{\hyperlink{namespacedatabase_a0f4e6af6cc5c61545b3daedeeee981a4}{error\+\_\+msg}} (err)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacedatabase_ae1f424018e81011f5382b6f8edc7ac86}{db}} = mysql.\+connector.\+connect(host=\char`\"{}localhost\char`\"{}, user=\char`\"{}root\char`\"{},password=\char`\"{}mp2020@@\char`\"{})
+\item 
+\mbox{\hyperlink{namespacedatabase_ae86c30cd3956d5d3765a0061c84768f5}{cursor}} = db.\+cursor()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespacedatabase_af9dacaeec00fbcd719aa5c1b8b50f040}\label{namespacedatabase_af9dacaeec00fbcd719aa5c1b8b50f040}} 
+\index{database@{database}!add\_admin@{add\_admin}}
+\index{add\_admin@{add\_admin}!database@{database}}
+\doxysubsubsection{\texorpdfstring{add\_admin()}{add\_admin()}}
+{\footnotesize\ttfamily def database.\+add\+\_\+admin (\begin{DoxyParamCaption}\item[{str}]{cpf,  }\item[{str}]{name,  }\item[{str}]{email,  }\item[{str}]{telephone,  }\item[{str}]{password }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacedatabase_ab3964cec72dde3b289382003e4909463}\label{namespacedatabase_ab3964cec72dde3b289382003e4909463}} 
+\index{database@{database}!add\_client@{add\_client}}
+\index{add\_client@{add\_client}!database@{database}}
+\doxysubsubsection{\texorpdfstring{add\_client()}{add\_client()}}
+{\footnotesize\ttfamily def database.\+add\+\_\+client (\begin{DoxyParamCaption}\item[{str}]{cpf,  }\item[{str}]{name,  }\item[{str}]{email,  }\item[{str}]{telephone,  }\item[{str}]{password }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacedatabase_a4846d9e6b9d7f4d1b607d2fb028967ec}\label{namespacedatabase_a4846d9e6b9d7f4d1b607d2fb028967ec}} 
+\index{database@{database}!add\_product@{add\_product}}
+\index{add\_product@{add\_product}!database@{database}}
+\doxysubsubsection{\texorpdfstring{add\_product()}{add\_product()}}
+{\footnotesize\ttfamily def database.\+add\+\_\+product (\begin{DoxyParamCaption}\item[{str}]{name,  }\item[{float}]{price,  }\item[{str}]{img,  }\item[{int}]{qtd,  }\item[{str}]{description }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacedatabase_af575219a2da6e7cbdafccec863363605}\label{namespacedatabase_af575219a2da6e7cbdafccec863363605}} 
+\index{database@{database}!add\_to\_cart@{add\_to\_cart}}
+\index{add\_to\_cart@{add\_to\_cart}!database@{database}}
+\doxysubsubsection{\texorpdfstring{add\_to\_cart()}{add\_to\_cart()}}
+{\footnotesize\ttfamily def database.\+add\+\_\+to\+\_\+cart (\begin{DoxyParamCaption}\item[{str}]{cpf,  }\item[{int}]{id\+\_\+product,  }\item[{int}]{quantity }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacedatabase_a06180f946f9794cbac27117edcfda659}\label{namespacedatabase_a06180f946f9794cbac27117edcfda659}} 
+\index{database@{database}!complete\_purchase@{complete\_purchase}}
+\index{complete\_purchase@{complete\_purchase}!database@{database}}
+\doxysubsubsection{\texorpdfstring{complete\_purchase()}{complete\_purchase()}}
+{\footnotesize\ttfamily def database.\+complete\+\_\+purchase (\begin{DoxyParamCaption}\item[{str}]{cpf }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacedatabase_a0f4e6af6cc5c61545b3daedeeee981a4}\label{namespacedatabase_a0f4e6af6cc5c61545b3daedeeee981a4}} 
+\index{database@{database}!error\_msg@{error\_msg}}
+\index{error\_msg@{error\_msg}!database@{database}}
+\doxysubsubsection{\texorpdfstring{error\_msg()}{error\_msg()}}
+{\footnotesize\ttfamily def database.\+error\+\_\+msg (\begin{DoxyParamCaption}\item[{}]{err }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacedatabase_a1abfaa4bd83b6ab9edd5a01d67aefcb7}\label{namespacedatabase_a1abfaa4bd83b6ab9edd5a01d67aefcb7}} 
+\index{database@{database}!rmv\_cart@{rmv\_cart}}
+\index{rmv\_cart@{rmv\_cart}!database@{database}}
+\doxysubsubsection{\texorpdfstring{rmv\_cart()}{rmv\_cart()}}
+{\footnotesize\ttfamily def database.\+rmv\+\_\+cart (\begin{DoxyParamCaption}\item[{str}]{cpf }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacedatabase_a6df45ea8f255c0a91462206fcf7440f3}\label{namespacedatabase_a6df45ea8f255c0a91462206fcf7440f3}} 
+\index{database@{database}!rmv\_client@{rmv\_client}}
+\index{rmv\_client@{rmv\_client}!database@{database}}
+\doxysubsubsection{\texorpdfstring{rmv\_client()}{rmv\_client()}}
+{\footnotesize\ttfamily def database.\+rmv\+\_\+client (\begin{DoxyParamCaption}\item[{str}]{cpf }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacedatabase_a6a070a7822fb9868cd341ee7d4fed992}\label{namespacedatabase_a6a070a7822fb9868cd341ee7d4fed992}} 
+\index{database@{database}!rmv\_data@{rmv\_data}}
+\index{rmv\_data@{rmv\_data}!database@{database}}
+\doxysubsubsection{\texorpdfstring{rmv\_data()}{rmv\_data()}}
+{\footnotesize\ttfamily def database.\+rmv\+\_\+data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacedatabase_a3934a0bd6f46dbacc0524328fa45f857}\label{namespacedatabase_a3934a0bd6f46dbacc0524328fa45f857}} 
+\index{database@{database}!rmv\_everything@{rmv\_everything}}
+\index{rmv\_everything@{rmv\_everything}!database@{database}}
+\doxysubsubsection{\texorpdfstring{rmv\_everything()}{rmv\_everything()}}
+{\footnotesize\ttfamily def database.\+rmv\+\_\+everything (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacedatabase_aef2b66157a74a37f7e875fcb5c07e877}\label{namespacedatabase_aef2b66157a74a37f7e875fcb5c07e877}} 
+\index{database@{database}!rmv\_from\_cart@{rmv\_from\_cart}}
+\index{rmv\_from\_cart@{rmv\_from\_cart}!database@{database}}
+\doxysubsubsection{\texorpdfstring{rmv\_from\_cart()}{rmv\_from\_cart()}}
+{\footnotesize\ttfamily def database.\+rmv\+\_\+from\+\_\+cart (\begin{DoxyParamCaption}\item[{str}]{cpf,  }\item[{int}]{id\+\_\+product }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacedatabase_ac0a38dc6ee2a3beb0ab2b2d2e8122c3d}\label{namespacedatabase_ac0a38dc6ee2a3beb0ab2b2d2e8122c3d}} 
+\index{database@{database}!rmv\_product@{rmv\_product}}
+\index{rmv\_product@{rmv\_product}!database@{database}}
+\doxysubsubsection{\texorpdfstring{rmv\_product()}{rmv\_product()}}
+{\footnotesize\ttfamily def database.\+rmv\+\_\+product (\begin{DoxyParamCaption}\item[{int}]{id\+\_\+product }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacedatabase_a5db9d10e63767c218137517a8d7d3390}\label{namespacedatabase_a5db9d10e63767c218137517a8d7d3390}} 
+\index{database@{database}!rmv\_tables@{rmv\_tables}}
+\index{rmv\_tables@{rmv\_tables}!database@{database}}
+\doxysubsubsection{\texorpdfstring{rmv\_tables()}{rmv\_tables()}}
+{\footnotesize\ttfamily def database.\+rmv\+\_\+tables (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacedatabase_aa523e9dfb731009fc9306123d1d07d8f}\label{namespacedatabase_aa523e9dfb731009fc9306123d1d07d8f}} 
+\index{database@{database}!show\_all\_clients@{show\_all\_clients}}
+\index{show\_all\_clients@{show\_all\_clients}!database@{database}}
+\doxysubsubsection{\texorpdfstring{show\_all\_clients()}{show\_all\_clients()}}
+{\footnotesize\ttfamily def database.\+show\+\_\+all\+\_\+clients (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacedatabase_aa43b1bab1e2c64ce3c0ad3739943bf30}\label{namespacedatabase_aa43b1bab1e2c64ce3c0ad3739943bf30}} 
+\index{database@{database}!show\_all\_products@{show\_all\_products}}
+\index{show\_all\_products@{show\_all\_products}!database@{database}}
+\doxysubsubsection{\texorpdfstring{show\_all\_products()}{show\_all\_products()}}
+{\footnotesize\ttfamily def database.\+show\+\_\+all\+\_\+products (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacedatabase_ace15b1b3cc33a6e68400cc588bca34d6}\label{namespacedatabase_ace15b1b3cc33a6e68400cc588bca34d6}} 
+\index{database@{database}!show\_cart@{show\_cart}}
+\index{show\_cart@{show\_cart}!database@{database}}
+\doxysubsubsection{\texorpdfstring{show\_cart()}{show\_cart()}}
+{\footnotesize\ttfamily def database.\+show\+\_\+cart (\begin{DoxyParamCaption}\item[{str}]{cpf }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacedatabase_aabbd2490659e7f475fcc05e900508f0b}\label{namespacedatabase_aabbd2490659e7f475fcc05e900508f0b}} 
+\index{database@{database}!show\_cart\_val@{show\_cart\_val}}
+\index{show\_cart\_val@{show\_cart\_val}!database@{database}}
+\doxysubsubsection{\texorpdfstring{show\_cart\_val()}{show\_cart\_val()}}
+{\footnotesize\ttfamily def database.\+show\+\_\+cart\+\_\+val (\begin{DoxyParamCaption}\item[{str}]{cpf }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacedatabase_a27be90f09ec97fe93e4702971fbaa90d}\label{namespacedatabase_a27be90f09ec97fe93e4702971fbaa90d}} 
+\index{database@{database}!show\_client@{show\_client}}
+\index{show\_client@{show\_client}!database@{database}}
+\doxysubsubsection{\texorpdfstring{show\_client()}{show\_client()}}
+{\footnotesize\ttfamily def database.\+show\+\_\+client (\begin{DoxyParamCaption}\item[{str}]{cpf }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacedatabase_a60092e4a2650587682e5b5c990709ccb}\label{namespacedatabase_a60092e4a2650587682e5b5c990709ccb}} 
+\index{database@{database}!show\_product@{show\_product}}
+\index{show\_product@{show\_product}!database@{database}}
+\doxysubsubsection{\texorpdfstring{show\_product()}{show\_product()}}
+{\footnotesize\ttfamily def database.\+show\+\_\+product (\begin{DoxyParamCaption}\item[{int}]{id\+\_\+product }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacedatabase_a688a13145e3b83b367a2ced391b23eb6}\label{namespacedatabase_a688a13145e3b83b367a2ced391b23eb6}} 
+\index{database@{database}!update\_e\_client@{update\_e\_client}}
+\index{update\_e\_client@{update\_e\_client}!database@{database}}
+\doxysubsubsection{\texorpdfstring{update\_e\_client()}{update\_e\_client()}}
+{\footnotesize\ttfamily def database.\+update\+\_\+e\+\_\+client (\begin{DoxyParamCaption}\item[{str}]{cpf,  }\item[{str}]{new\+\_\+val }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacedatabase_a3a378c2a1853c09c656fb47fa446f30d}\label{namespacedatabase_a3a378c2a1853c09c656fb47fa446f30d}} 
+\index{database@{database}!update\_n\_client@{update\_n\_client}}
+\index{update\_n\_client@{update\_n\_client}!database@{database}}
+\doxysubsubsection{\texorpdfstring{update\_n\_client()}{update\_n\_client()}}
+{\footnotesize\ttfamily def database.\+update\+\_\+n\+\_\+client (\begin{DoxyParamCaption}\item[{str}]{cpf,  }\item[{str}]{new\+\_\+val }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacedatabase_a1f64659351032c1c4e52600d995a1a84}\label{namespacedatabase_a1f64659351032c1c4e52600d995a1a84}} 
+\index{database@{database}!update\_p\_client@{update\_p\_client}}
+\index{update\_p\_client@{update\_p\_client}!database@{database}}
+\doxysubsubsection{\texorpdfstring{update\_p\_client()}{update\_p\_client()}}
+{\footnotesize\ttfamily def database.\+update\+\_\+p\+\_\+client (\begin{DoxyParamCaption}\item[{str}]{cpf,  }\item[{str}]{new\+\_\+val }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacedatabase_a25ccca98eec206208dec313ad72cdd2a}\label{namespacedatabase_a25ccca98eec206208dec313ad72cdd2a}} 
+\index{database@{database}!update\_p\_product@{update\_p\_product}}
+\index{update\_p\_product@{update\_p\_product}!database@{database}}
+\doxysubsubsection{\texorpdfstring{update\_p\_product()}{update\_p\_product()}}
+{\footnotesize\ttfamily def database.\+update\+\_\+p\+\_\+product (\begin{DoxyParamCaption}\item[{int}]{id\+\_\+product,  }\item[{float}]{new\+\_\+val }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacedatabase_a9f428a18d6de07192d9eec3afb6056a3}\label{namespacedatabase_a9f428a18d6de07192d9eec3afb6056a3}} 
+\index{database@{database}!update\_q\_product@{update\_q\_product}}
+\index{update\_q\_product@{update\_q\_product}!database@{database}}
+\doxysubsubsection{\texorpdfstring{update\_q\_product()}{update\_q\_product()}}
+{\footnotesize\ttfamily def database.\+update\+\_\+q\+\_\+product (\begin{DoxyParamCaption}\item[{int}]{id\+\_\+product,  }\item[{int}]{new\+\_\+val }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacedatabase_a2877b3a88935f666ed3af407df91278d}\label{namespacedatabase_a2877b3a88935f666ed3af407df91278d}} 
+\index{database@{database}!update\_t\_client@{update\_t\_client}}
+\index{update\_t\_client@{update\_t\_client}!database@{database}}
+\doxysubsubsection{\texorpdfstring{update\_t\_client()}{update\_t\_client()}}
+{\footnotesize\ttfamily def database.\+update\+\_\+t\+\_\+client (\begin{DoxyParamCaption}\item[{str}]{cpf,  }\item[{str}]{new\+\_\+val }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{namespacedatabase_ae86c30cd3956d5d3765a0061c84768f5}\label{namespacedatabase_ae86c30cd3956d5d3765a0061c84768f5}} 
+\index{database@{database}!cursor@{cursor}}
+\index{cursor@{cursor}!database@{database}}
+\doxysubsubsection{\texorpdfstring{cursor}{cursor}}
+{\footnotesize\ttfamily database.\+cursor = db.\+cursor()}
+
+\mbox{\Hypertarget{namespacedatabase_ae1f424018e81011f5382b6f8edc7ac86}\label{namespacedatabase_ae1f424018e81011f5382b6f8edc7ac86}} 
+\index{database@{database}!db@{db}}
+\index{db@{db}!database@{database}}
+\doxysubsubsection{\texorpdfstring{db}{db}}
+{\footnotesize\ttfamily database.\+db = mysql.\+connector.\+connect(host=\char`\"{}localhost\char`\"{}, user=\char`\"{}root\char`\"{},password=\char`\"{}mp2020@@\char`\"{})}
+
