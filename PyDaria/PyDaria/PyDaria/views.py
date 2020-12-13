@@ -520,14 +520,30 @@ def carrinho():
 
 @app.route('/cart/delete/<prod_id>')
 def delete_from_cart(prod_id):
+    """
+    Função: Deletar um item com id prod_id do carrinho
+
+    Descrição: Caso a rota seja baseURL + /cart/delete/<prod_id> ele remove o produto e volta para o carrinho.
+
+    Valor retornado: um redirect para a pagina do carrinho.
+
+    Assertiva de entrada: aceita o metodo get e o cliente está logado e é admin.
+
+    Assertiva de Saida: Remove o produto e volta para a página do carrinho.
+    """
     if session and session['client_cpf']:
+        """
+        Verifica se o usuario esta logado.
+        """
         carrinho = show_cart(session['client_cpf'])
         for produto in carrinho:
             if produto[2] == int(prod_id):
+                """
+                Verifica se o produto está no carrinho
+                """
                 rmv_from_cart(session['client_cpf'], int(prod_id))
                 return redirect(url_for('carrinho'))
         return redirect(url_for('carrinho'))
-
     else:
         return redirect(url_for('home'))
 
