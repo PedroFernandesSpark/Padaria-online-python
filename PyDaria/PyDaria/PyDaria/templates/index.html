@@ -48,7 +48,9 @@
         <div id="container">
             <div id="text">
                 <h1>PyDaria</h1>
-                <h2 id="loginMessage">Faça login ou registre-se para comprar nossos produtos</h2>
+                {% if not logado%}
+                    <h2 id="loginMessage">Faça login ou registre-se para comprar nossos produtos</h2>
+                {% endif %}
                 <h3>Alguma mensagem sobre a padaria...</h3>
             </div>
         </div>

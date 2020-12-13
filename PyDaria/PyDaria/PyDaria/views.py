@@ -437,7 +437,7 @@ def add_produto(prod_id):
             verifica se a quantidade é maior que o estoque(produto[4])
             """
             error = NO_SUFFICIENT_PRODUCT.format(produto[4])
-        elif not session["client_cpf"]:
+        elif not session or not session["client_cpf"]:
             """
             verifica se esta logado.
             """
