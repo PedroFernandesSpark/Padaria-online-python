@@ -63,7 +63,7 @@
                   <td id="price_prod{{produto[0]}}">{{produto[1]}}</td>
                   <td>{{produto[4]}}</td>
                   <td><a href="backoffice/editar/"></a><button type="button" class="btn btn-primary">Editar</button></a></td>
-                  <td><button type="button" class="btn btn-danger">Deletar</button></td>
+                  <td><button type="button" class="btn btn-danger" onclick="window.location.href = '/backoffice/produtos/remove/{{produto[0]}}'">Deletar</button></td>
                 </tr>
               {% endfor %}
             </tbody>
