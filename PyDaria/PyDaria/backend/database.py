@@ -2,7 +2,7 @@ import mysql.connector
 from flask import make_response
 
 # Conencta no banco de dados
-db = mysql.connector.connect(host="localhost", user="root",password="Mp2020@@", database="clientes")
+db = mysql.connector.connect(host="localhost", user="root",password="mp2020@@", database="clientes")
 
 # Gera um cursos que será responsável por realizar as ações
 cursor = db.cursor()
@@ -29,6 +29,7 @@ cursor.execute("CREATE TABLE IF NOT EXISTS `Products` ( \
   `Name` varchar(45) NOT NULL, \
   `Picture` MEDIUMTEXT NOT NULL, \
   `Quantity` int(11) NOT NULL, \
+  `Description` varchar(255) NOT NULL, \
   PRIMARY KEY (`ID_Products`) \
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;")
 
@@ -190,13 +191,13 @@ def update_n_client(cpf: str, new_val: str):
     return True
 
 # Adiciona produtos no banco de dados
-def add_product(name: str, price: float, img: str, qtd: int):
+def add_product(name: str, price: float, img: str, qtd: int, description: str):
        
     # Comando SQL a ser executado
-    query = ("INSERT INTO Products (Name, Price, Picture, Quantity) VALUES (%s, %s, %s, %s);")
+    query = ("INSERT INTO Products (Name, Price, Picture, Quantity, Description) VALUES (%s, %s, %s, %s, %s);")
     
     # Valores a serem adicionados
-    val = (name, price, img, qtd)
+    val = (name, price, img, qtd, description)
 
     # Executa o comando
     cursor.execute(query, val)
@@ -414,8 +415,8 @@ def complete_purchase(cpf: str):
     
     rmv_cart(cpf)
 
-# Remove tudo
-def rmv_everything():
+# Remove os dados
+def rmv_data():
     query = ("DELETE FROM Clients;")
     cursor.execute(query)
     db.commit()
@@ -428,3 +429,21 @@ def rmv_everything():
     cursor.execute(query)
     db.commit()
 
+# Apaga as tabelas
+def rmv_tables():
+    query = ("DROP TABLE Clients;")
+    cursor.execute(query)
+    db.commit()
+
+    query = ("DROP TABLE Products;")
+    cursor.execute(query)
+    db.commit()
+
+    query = ("DROP TABLE Carrinho;")
+    cursor.execute(query)
+    db.commit()
+
+# Remove tudo
+def rmv_everything():
+    rmv_data()
+    rmv_tables() 
