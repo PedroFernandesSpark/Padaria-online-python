@@ -38,13 +38,19 @@ $ cd endereço-do-diretorio
 Via cmd, utilize o seguinte comando:
 $ cd PyDaria/PyDaria
 
-6- Agora que estamos no diretório final, bastam 2 comandos para rodar o servidor do projeto localmente.
+6- Siga os passos descritos no final da página para configurar o MySQL
+
+7- Execute os scritps database.py e populate_tables.py:
+$ python backend/database.py
+$ python backend/populate_tables.py
+
+7- Agora que estamos no diretório final, bastam 2 comandos para rodar o servidor do projeto localmente.
 Utilize, via cmd, os seguintes comandos:
 verifique que está em um diretorio como <alguma-coisa/PyDaria/PyDaria>
 então rode o comando :
 $ py -3 runserver.py 
 
-7- Agora, com seu servidor funcionando, abra o Google Chrome do seu computador (mozilla Firefox não reconhece alguns artefatos visuais implementados) e navegue até o endereço 
+8- Agora, com seu servidor funcionando, abra o Google Chrome do seu computador (mozilla Firefox não reconhece alguns artefatos visuais implementados) e navegue até o endereço 
 http://127.0.0.1:5000/
 
 
