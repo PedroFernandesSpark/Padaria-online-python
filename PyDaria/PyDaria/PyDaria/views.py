@@ -15,7 +15,7 @@ banco de dados
 from datetime import datetime
 from flask import render_template, request, redirect, url_for, session
 from PyDaria import app
-from backend.database import show_client, add_client, add_product, show_all_products, show_product, add_to_cart, show_cart, show_cart_val, rmv_from_cart
+from backend.database import show_client, add_client, add_product, rmv_product, show_all_products, show_product, add_to_cart, show_cart, show_cart_val, rmv_from_cart
 
 """
 Definição das funções do database.py:
@@ -25,6 +25,8 @@ add_client(cpf, name, email, telephone, password)
 show_client(cpf) return: ((id, name, email, telephone, cpf, isAdmin, password))
 
 add_product(name, price, img, qtd, description)
+
+rmv_product(id_produto)
 
 show_all_products() return: ((id, price, name, img, qtd, description), (id, price, ...), ...)
 
@@ -42,6 +44,14 @@ rmv_from_cart(cpf, id_produto)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 NOME_CLIENTE = 'Nome do cliente'
 CLIENT_NOT_FOUND = 'Cliente não encontrado'
+CLIENT_NOT_LOGGED = 'Por favor, faça login'
+CPF_ALREADY_REGISTERED = 'Já tem um usuário cadastrado com esse CPF'
+WRONG_CPF = 'CPF Incorreto'
+WRONG_PASSWORD = 'Senha Incorreta'
+PRODUCT_NOT_FOUND = 'Produto Inexistente'
+QUANTITY_NOT_POSITIVE = 'Coloque pelo menos um item no carrinho!'
+PRODUCT_UNAVAILABLE = 'Produto Indisponível'
+NO_SUFFICIENT_PRODUCT = 'Só tem {} desse produto no estoque'
 
 @app.route('/')
 @app.route('/home')
@@ -121,7 +131,7 @@ def singup():
             """
             Verifica a duplicidade do cpf informado, dando uma mensagem de erro caso ele já exista.
             """
-            error = "Já tem um usuário cadastrado com esse CPF"
+            error = CPF_ALREADY_REGISTERED
         name = request.form['name']
         email = request.form['email']
         telephone = request.form['phone']
@@ -173,12 +183,12 @@ def login():
             """
             Verifica se existe aquele cpf no banco de dados
             """
-            error = "CPF Incorreto"
+            error = WRONG_CPF
         elif password != client[0][6]:
             """
             Verifica se a senha é igual a do banco de dados.
             """
-            error = "Senha Incorreta"
+            error = WRONG_PASSWORD
         if error is None:
             """
             Verifica se há erros
@@ -337,6 +347,15 @@ def productcreate():
             year=datetime.now().year,
         )
 
+@app.route('/backoffice/produtos/remove/<prod_id>')
+def remove_product(prod_id):
+    if session and session['client_cpf'] and (session['client_cpf'] == "12345678900" or session['client_cpf'] == "112233445566"):
+        produto = show_product(prod_id)
+        if produto:
+            rmv_product(prod_id)
+        return redirect(url_for("productadm"))
+    return redirect(url_for("home"))
+
 @app.route('/prod/<prod_id>', methods=['GET','POST'])
 def produto(prod_id):
     """
@@ -350,12 +369,12 @@ def produto(prod_id):
 
     Assertiva de Saida: renderiza um html para o produto selecionado.
     """
+    error = None
     logado = False
     nome = NOME_CLIENTE
-    error = None
     produto = show_product(prod_id)
     if not produto or not produto[0]:
-        error="Produto Inexistente"
+        error=PRODUCT_NOT_FOUND
     else:
         produto = produto[0]
     if session and session['client_cpf']:
@@ -395,6 +414,7 @@ def add_produto(prod_id):
 
     Assertiva de Saida: adiciona o cpf, o prod_id e a quantidade no banco de dados do carrinho.
     """
+    error = None
     produto = show_product(prod_id)
     produto = produto[0]
     if produto and request.method == "POST" and request.form:
@@ -406,17 +426,22 @@ def add_produto(prod_id):
             """
             verifica se a quantidade é menor ou igual a zero
             """
-            error = "Coloque pelo menos um item no carrinho!"
+            error = QUANTITY_NOT_POSITIVE
         elif produto[4] <= 0:
             """
             verifica se a produto[4] é menor ou igual a zero
             """
-            error = "Produto Indisponível"
+            error = error = PRODUCT_UNAVAILABLE
+        elif produto[4] < quantidade:
+            """
+            verifica se a quantidade é maior que o estoque(produto[4])
+            """
+            error = NO_SUFFICIENT_PRODUCT.format(produto[4])
         elif not session["client_cpf"]:
             """
             verifica se esta logado.
             """
-            error = "Cliente não logado"
+            error = CLIENT_NOT_LOGGED
         else:
             carrinho = show_cart(session['client_cpf'])
             for produto in carrinho:
@@ -432,6 +457,36 @@ def add_produto(prod_id):
             redireciona para a pagina do carrinho
             """
             return redirect(url_for('carrinho'))
+    else:
+        error = PRODUCT_NOT_FOUND
+    logado = False
+    nome = NOME_CLIENTE
+    produto = show_product(prod_id)
+    if not produto or not produto[0]:
+        error=PRODUCT_NOT_FOUND
+    else:
+        produto = produto[0]
+    if session and session['client_cpf']:
+        """
+        Verifica se o user esta logado.
+        """
+        logado = True
+        client = show_client(session['client_cpf'])
+        if not client:
+            """
+            Verifica se o cpf esta presente na session.
+            """
+            nome = CLIENT_NOT_FOUND
+        else:
+            nome = client[0][1]
+    return render_template(
+        'produto.html',
+        logado=logado,
+        nome=nome,
+        produto=produto,
+        error=error
+    )
+
 @app.route('/carrinho', methods=['GET','POST'])
 def carrinho():
     """
@@ -449,6 +504,7 @@ def carrinho():
     nome = NOME_CLIENTE
     carrinho = None
     total = None
+    admin = False
     produtos = {}
     if session and session['client_cpf']:
         """
@@ -460,6 +516,11 @@ def carrinho():
             nome = CLIENT_NOT_FOUND
         else:
             nome = client[0][1]
+        if client[0][4] == "12345678900" or client[0][4] == "112233445566":
+            """
+                Checa se o usuário é admin, se for, manda essa informação para o site
+            """
+            admin = True
     if logado:
         """
         verifica se esta logado.
@@ -478,6 +539,7 @@ def carrinho():
         'carrinho.html',
         logado=logado,
         nome=nome,
+        admin=admin,
         carrinho=carrinho,
         produtos=produtos,
         total=total
@@ -516,7 +578,6 @@ def delete_from_cart(prod_id):
                 """
                 return redirect(url_for('carrinho'))
         return redirect(url_for('carrinho'))
-
     else:
         """
         caso falhe, retorna o user para a home page.

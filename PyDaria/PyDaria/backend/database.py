@@ -48,7 +48,6 @@ try:
 except mysql.connector.Error as err:
     error_msg(err)
 
-
 # Adiciona um cliente no banco de dados apartir do cpf, email, nome e telefone
 def add_client(cpf: str, name: str, email: str, telephone: str, password: str):
 
@@ -291,10 +290,10 @@ def show_product(id_product: int):
 
 # Remove um produto do banco de dados
 def rmv_product(id_product: int):
-
+  
     try:
         # Comando SQL a ser executado
-        query = ("DELETE FROM Products WHERE ID = '{}';".format(id_product))
+        query = ("DELETE FROM Products WHERE ID_Products = '{}';".format(id_product))
 
         # Executa o comando
         cursor.execute(query)
