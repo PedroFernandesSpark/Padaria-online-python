@@ -1,49 +1,52 @@
 import mysql.connector
 from flask import make_response
 
-# Conencta no banco de dados
-db = mysql.connector.connect(host="localhost", user="root",password="mp2020@@")
+try:
+    # Conencta no banco de dados
+    db = mysql.connector.connect(host="localhost", user="root",password="mp2020@@")
 
-# Gera um cursos que será responsável por realizar as ações
-cursor = db.cursor()
+    # Gera um cursos que será responsável por realizar as ações
+    cursor = db.cursor()
 
-# Cria o banco de dados caso não exista
-cursor.execute("CREATE DATABASE IF NOT EXISTS clientes;")
+    # Cria o banco de dados caso não exista
+    cursor.execute("CREATE DATABASE IF NOT EXISTS clientes;")
 
-# Aceesa a databse criada
-cursor.execute("USE clientes")
+    # Aceesa a databse criada
+    cursor.execute("USE clientes")
 
-# Cria a tabela de clientes
-cursor.execute("CREATE TABLE IF NOT EXISTS `Clients` ( \
-  `ID` int(11) NOT NULL AUTO_INCREMENT, \
-  `Name` varchar(45) NOT NULL, \
-  `Email` varchar(45) NOT NULL, \
-  `Telephone` varchar(45) NOT NULL, \
-  `Cpf` varchar(45) NOT NULL, \
-  `isAdmin` tinyint(4) NOT NULL, \
-  `Password` varchar(45) NOT NULL, \
-  PRIMARY KEY (`ID`) \
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;")
+    # Cria a tabela de clientes
+    cursor.execute("CREATE TABLE IF NOT EXISTS `Clients` ( \
+    `ID` int(11) NOT NULL AUTO_INCREMENT, \
+    `Name` varchar(45) NOT NULL, \
+    `Email` varchar(45) NOT NULL, \
+    `Telephone` varchar(45) NOT NULL, \
+    `Cpf` varchar(45) NOT NULL, \
+    `isAdmin` tinyint(4) NOT NULL, \
+    `Password` varchar(45) NOT NULL, \
+    PRIMARY KEY (`ID`) \
+    ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;")
 
-# Cria a tabela de produtos
-cursor.execute("CREATE TABLE IF NOT EXISTS `Products` ( \
-  `ID_Products` int(11) NOT NULL AUTO_INCREMENT, \
-  `Price` float NOT NULL, \
-  `Name` varchar(45) NOT NULL, \
-  `Picture` MEDIUMTEXT NOT NULL, \
-  `Quantity` int(11) NOT NULL, \
-  `Description` varchar(255) NOT NULL, \
-  PRIMARY KEY (`ID_Products`) \
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;")
+    # Cria a tabela de produtos
+    cursor.execute("CREATE TABLE IF NOT EXISTS `Products` ( \
+    `ID_Products` int(11) NOT NULL AUTO_INCREMENT, \
+    `Price` float NOT NULL, \
+    `Name` varchar(45) NOT NULL, \
+    `Picture` MEDIUMTEXT NOT NULL, \
+    `Quantity` int(11) NOT NULL, \
+    `Description` varchar(255) NOT NULL, \
+    PRIMARY KEY (`ID_Products`) \
+    ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;")
 
-# Cria a tabela do carrinho de compras
-cursor.execute("CREATE TABLE IF NOT EXISTS`Carrinho` ( \
-  `cpf_cliente` varchar(11) NOT NULL, \
-  `quantidade` int(11) DEFAULT NULL, \
-  `item` int(11) DEFAULT NULL, \
-  `price` float DEFAULT NULL, \
-  `valor` float DEFAULT NULL \
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;")
+    # Cria a tabela do carrinho de compras
+    cursor.execute("CREATE TABLE IF NOT EXISTS`Carrinho` ( \
+    `cpf_cliente` varchar(11) NOT NULL, \
+    `quantidade` int(11) DEFAULT NULL, \
+    `item` int(11) DEFAULT NULL, \
+    `price` float DEFAULT NULL, \
+    `valor` float DEFAULT NULL \
+    ) ENGINE=InnoDB DEFAULT CHARSET=latin1;")
+except mysql.connector.Error as err:
+    error_msg(err)
 
 
 # Adiciona um cliente no banco de dados apartir do cpf, email, nome e telefone
