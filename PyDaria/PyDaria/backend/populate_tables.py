@@ -2,7 +2,7 @@
 import database
 import sys
 
-database.add_client("12345678900", "Admin", "admin@mail.com", "6140028922", "senha123")
+database.add_admin("12345678900", "Admin", "admin@mail.com", "6140028922", "senha123")
 database.add_client("24446666660", "Joao", "user@mail.com", "6134354040", "senha456")
 
 img_file = open(sys.argv[1])
