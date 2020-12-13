@@ -25,6 +25,28 @@ Utilize, via terminal, os seguintes comandos:
 $ export FLASK_APP=runserver.py
 $ flask run
 
+# Processo de execução do projeto em WINDOWS 10:
+1- Baixe o compilador de python (versão 3 ou superior) pelo site https://www.python.org/downloads/ na opção "Download windows", 
+
+2- Baixe o pip via cmd seguindo as instruções oficiais em https://pip.pypa.io/en/stable/installing/ (selecione a opção para windows)
+
+
+3-Baixe o FLASK seguindo as informações oficiais em https://flask.palletsprojects.com/en/1.1.x/installation/
+
+4- Agora que você já tem todos os recursos necessários, clone ou faça o download do projeto e localize-o em seu computador.
+Navegue até o mesmo por meio do comando:
+$ cd endereço-do-diretorio
+
+5- É necessário navegar agora até um diretório mais interno do sistema. Seu endereço agora deve se parecer com .../Padaria-online-python
+Via cmd, utilize o seguinte comando:
+$ cd PyDaria/PyDaria
+
+6- Agora que estamos no diretório final, bastam 2 comandos para rodar o servidor do projeto localmente.
+Utilize, via cmd, os seguintes comandos:
+verifique que está em um diretorio como <alguma-coisa/PyDaria/PyDaria>
+então rode o comando :
+$ py -3 runserver.py 
+
 7- Agora, com seu servidor funcionando, abra o Google Chrome do seu computador (mozilla Firefox não reconhece alguns artefatos visuais implementados) e navegue até o endereço 
 http://127.0.0.1:5000/
 
@@ -38,3 +60,5 @@ A navegação do site é como a de qualquer outro site conhecido na internet, co
  2- Não foi implementado um sistema de entregas pois é suposto que o cliente usaria o site para apenas fazer reservas de produtos na PyDaria física.
  
  3- Os produtos são todos comprados por quantidade de unidades, e não por peso ou volume.
+ 
+ 
