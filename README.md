@@ -29,6 +29,7 @@ $ flask run
 http://127.0.0.1:5000/
 
 A navegação do site é como a de qualquer outro site conhecido na internet, com algumas considerações:
+
 1- Os produtos inicialmente mostrados são apenas visuais, sem recursos funcionais.
    Para isto, é necessário criar uma conta com o CPF 12345678900 e fazer login. Isso o redirecionará a uma página de criação de produtos.
    Preencha os campos presentes com os dados que quiser.
