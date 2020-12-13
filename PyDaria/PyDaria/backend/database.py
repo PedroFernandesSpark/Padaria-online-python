@@ -2,13 +2,16 @@ import mysql.connector
 from flask import make_response
 
 # Conencta no banco de dados
-db = mysql.connector.connect(host="localhost", user="root",password="mp2020@@", database="clientes")
+db = mysql.connector.connect(host="localhost", user="root",password="mp2020@@")
 
 # Gera um cursos que será responsável por realizar as ações
 cursor = db.cursor()
 
 # Cria o banco de dados caso não exista
 cursor.execute("CREATE DATABASE IF NOT EXISTS clientes;")
+
+# Aceesa a databse criada
+cursor.execute("USE clientes")
 
 # Cria a tabela de clientes
 cursor.execute("CREATE TABLE IF NOT EXISTS `Clients` ( \
