@@ -63,6 +63,8 @@ https://dev.mysql.com/downloads/workbench/
 3- Acesse a pasta backend e altere a senha do usuário root para a que você cadastrou no MySQL. Caminho do arquivo:
 Pydaria/PyDaria/backend/database.py
 
+4- Para acessar o SQL no windows, um programa deve ser utilizado, recomenda-se o Wamp com as extenções de MySQL adicionadas, https://sourceforge.net/projects/wampserver/
+
 # Informações
 A navegação do site é como a de qualquer outro site conhecido na internet, com algumas considerações:
  
