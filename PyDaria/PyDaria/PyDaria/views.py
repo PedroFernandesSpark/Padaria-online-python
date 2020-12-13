@@ -398,21 +398,39 @@ def add_produto(prod_id):
     produto = show_product(prod_id)
     produto = produto[0]
     if produto and request.method == "POST" and request.form:
+        """
+        verifica se o produto e request.form existem e se o metodo é post
+        """
         quantidade = int(request.form['quantidade'])
         if int(quantidade) <= 0:
+            """
+            verifica se a quantidade é menor ou igual a zero
+            """
             error = "Coloque pelo menos um item no carrinho!"
         elif produto[4] <= 0:
+            """
+            verifica se a produto[4] é menor ou igual a zero
+            """
             error = "Produto Indisponível"
         elif not session["client_cpf"]:
+            """
+            verifica se esta logado.
+            """
             error = "Cliente não logado"
         else:
             carrinho = show_cart(session['client_cpf'])
             for produto in carrinho:
+                """
+                percorre o carrinho colocando cada valor na variavel temporaria 'produto'
+                """
                 if produto[2] == int(prod_id) and produto[0] == session['client_cpf']:
                     quantidade = quantidade + produto[1]
                     rmv_from_cart(session['client_cpf'], int(prod_id))
                     break
             add_to_cart(session["client_cpf"], prod_id, quantidade)
+            """
+            redireciona para a pagina do carrinho
+            """
             return redirect(url_for('carrinho'))
 @app.route('/carrinho', methods=['GET','POST'])
 def carrinho():
@@ -433,18 +451,24 @@ def carrinho():
     total = None
     produtos = {}
     if session and session['client_cpf']:
+        """
+        Verifica se o usuario esta logado.
+        """
         logado = True
         client = show_client(session['client_cpf'])
         if not client:
-            """
-            Verifica se o usuario esta logado.
-            """
             nome = CLIENT_NOT_FOUND
         else:
             nome = client[0][1]
     if logado:
+        """
+        verifica se esta logado.
+        """
         carrinho = show_cart(session['client_cpf'])
         for produto in carrinho:
+            """
+            percorre o carrinho colocando cada item na variavel temporaria 'produto'
+            """
             produtos[produto[2]] = show_product(produto[2])[0]
         total = show_cart_val(session['client_cpf'])
     """
@@ -461,15 +485,42 @@ def carrinho():
 
 @app.route('/cart/delete/<prod_id>')
 def delete_from_cart(prod_id):
+    """
+    Função: Deleta um item do carrinho.
+
+    Descrição: Caso a rota seja baseURL + //cart/delete/<prod_id> ele exclui do carrinho do user o item com o id informado na requisição
+
+    Valor retornado: Deleta o item do carrinho.
+
+    Assertiva de entrada: aceita o metodo get e o valor id do item a ser deletado.
+
+    Assertiva de Saida: Deleta o item do carrinho.
+    """
     if session and session['client_cpf']:
+        """
+        verifica se o user esta logado.
+        """
         carrinho = show_cart(session['client_cpf'])
         for produto in carrinho:
+            """
+            passa pelos itens dentro do carrinho, atribuindo o valor de cada item 
+            na variavel temporaria 'produto'
+            """
             if produto[2] == int(prod_id):
+                """
+                verifica o valor 2 (id) de cada item do carrinho é igual ao id adicionado.
+                """
                 rmv_from_cart(session['client_cpf'], int(prod_id))
+                """
+                redireciona o usuer para o carrinho apos apagar o item escolhido
+                """
                 return redirect(url_for('carrinho'))
         return redirect(url_for('carrinho'))
 
     else:
+        """
+        caso falhe, retorna o user para a home page.
+        """
         return redirect(url_for('home'))
 
 @app.route('/logout')
