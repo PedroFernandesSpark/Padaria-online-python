@@ -1,0 +1,48 @@
+﻿DATA
+	HORAS TRABALHADAS
+	TIPO TAREFA
+	DESCRIÇÃO
+	22/11/2020
+	4
+	Estudar Aulas
+	Estudar a documentação do flask-marshmallow
+	23/11/2020
+	4
+	Projetar
+	Iniciar Desenvolvimento do banco de dados
+	24/11/2020
+	2
+	Realizar Testes
+	Testar e Debugar o banco de dados em marshmallow
+	28/11/2020
+	4
+	Estudar Aulas
+	Estudar a documentação do mysql-connector
+	29/11/2020
+	4
+	Projetar
+	Implementar o banco de dados usando MySQL
+	01/12/2020
+	2
+	Codificar Módulo
+	Implementar as tabelas de produtos
+	04/12/2020
+	3
+	Codificar Módulo
+	Implementar a tabela de carrinho
+	06/12/2020
+	2
+	Codificar Módulo
+	Funções para Limpar o banco de dados
+	09/12/2020
+	1
+	Codificar Módulo
+	Script para popular o banco de dados
+	11/12/2020
+	2
+	Codificar módulo
+	Scripts para executar os programas em python
+	12/12/2020
+	1
+	Documentar
+	Documentação dos scripts do backend

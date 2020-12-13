@@ -1,0 +1,44 @@
+﻿Data
+	Horas Trabalhadas
+	Tipo Tarefa
+	Descrição
+	01/11
+	4
+	*  projetar 
+* especificar as funções 
+* estudar aulas e laboratórios relacionados 
+	Criação do repositório, criação do kanban, idealização dos padrões de código e nome de branchs no git
+	02/11
+	3
+	* projetar
+	Criação da base do projeto em flask, com o server e distribuição MVC
+	10/11
+	2
+	* codificar módulo
+	Criação do front das pages de cadastro
+	20/11
+	3
+	* codificar módulo
+* revisar projetos
+	Front da página de produto
+	25/11
+	2
+	* codificar módulo
+* revisar projetos
+	Front do carrinho vazio e modificações na navbar
+	26/11
+	3
+	* codificar módulo
+* revisar projetos
+	Front do carrinho preparado para receber infos do banco de dados
+	10/12
+	5
+	* codificar módulo
+* revisar projetos
+* instrumentar verificando a cobertura
+*  documentar com Doxygen 
+	Criação e revisão de todos os comentários de código já preparado para o Doxygen e usando as assertivas
+	13/12
+	2
+	* instrumentar verificando a cobertura
+	Criação da readme (instruções de instalação e uso) da versão windows
