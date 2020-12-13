@@ -2,7 +2,7 @@ import mysql.connector
 from flask import make_response
 
 # Conencta no banco de dados
-db = mysql.connector.connect(host="localhost", user="root",password="mp2020@@")
+db = mysql.connector.connect(host="localhost", user="root",password="mp2020@@", database="clientes")
 
 # Gera um cursos que será responsável por realizar as ações
 cursor = db.cursor()
@@ -255,7 +255,7 @@ def show_product(id_product: int):
 def rmv_product(id_product: int):
 
     # Comando SQL a ser executado
-    query = ("DELETE FROM Products WHERE ID = '{}';".format(id_product))
+    query = ("DELETE FROM Products WHERE ID_Products = '{}';".format(id_product))
 
     # Executa o comando
     cursor.execute(query)

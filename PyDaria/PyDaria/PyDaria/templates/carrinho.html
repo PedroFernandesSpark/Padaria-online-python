@@ -23,7 +23,11 @@
                         </li>
                         {% if logado %}
                         <li class="nav-item active">
-                            <a class="nav-link custom_link" href="/"> {{ nome }} <span class="sr-only">(current)</span></a>
+                            {% if admin %}
+                                <a class="nav-link custom_link" href="/backoffice/produtos"> Admin <span class="sr-only">(current)</span></a>
+                            {% else %}
+                                <a class="nav-link custom_link" href="/">{{nome}}<span class="sr-only">(current)</span></a>
+                            {% endif %}
                         </li>
                         <li class="nav-item active">
                             <a class="nav-link custom_link" href="/logout"> Logout <span class="sr-only">(current)</span></a>
