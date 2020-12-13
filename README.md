@@ -3,27 +3,24 @@ Trabalho final da disciplina métodos de programação, um sistema web feito em 
 
 
 # Processo de execução do projeto em LINUX:
-1- Baixe o compilador de python via terminal:
-$ sudo apt-get install python3
+1- Clone o projeto em um repositório de sua escolha
 
-2- Baixe o pip via terminal:
-$ sudo apt install python3-pip
+2- Acesse a pasta PyDaria:
+$ cd PyDaria
 
-3-Baixe o FLASK via terminal:
-$ pip install -U Flask
+3- Dê permissão de execução para o script dependecies.sh:
+$ chmod u+x dependecies.sh
 
-4- Agora que você já tem todos os recursos necessários, faça download do projeto e localize-o em seu computador.
-Navegue até o mesmo por meio do comando:
-$ cd endereço-do-diretorio
+4- Execute o comando:
+$ ./dependecies.sh
 
-5- É necessário navegar agora até um diretório mais interno do sistema. Seu endereço agora deve se parecer com .../Padaria-online-python
-Via terminal, utilize o seguinte comando:
-$ cd PyDaria/PyDaria
+5- Configure a senha do MySQL no arquivo database.py como descrito no final dessa página 
 
-6- Agora que estamos no diretório final, bastam 2 comandos para rodar o servidor do projeto localmente.
-Utilize, via terminal, os seguintes comandos:
-$ export FLASK_APP=runserver.py
-$ flask run
+6- Execute o script execute.sh:
+$ ./execute.sh
+
+7- Acesse o link no terminal ou va até:
+http://localhost:5555/
 
 # Processo de execução do projeto em WINDOWS 10:
 1- Baixe o compilador de python (versão 3 ou superior) pelo site https://www.python.org/downloads/ na opção "Download windows", 
@@ -50,15 +47,21 @@ $ py -3 runserver.py
 7- Agora, com seu servidor funcionando, abra o Google Chrome do seu computador (mozilla Firefox não reconhece alguns artefatos visuais implementados) e navegue até o endereço 
 http://127.0.0.1:5000/
 
-A navegação do site é como a de qualquer outro site conhecido na internet, com algumas considerações:
 
-1- Os produtos inicialmente mostrados são apenas visuais, sem recursos funcionais.
-   Para isto, é necessário criar uma conta com o CPF 12345678900 e fazer login. Isso o redirecionará a uma página de criação de produtos.
-   Preencha os campos presentes com os dados que quiser.
-   Obs.: as imagens do projeto estão no diretório de endereço /Padaria-online-python/PyDaria/PyDaria/PyDaria/staitc/img
+# Configurando o MySQL e o banco de dados
+1- Se você rodou o script do linux você ja deve ter tudo necessário instalado, se você estiver no Windows instale o MySQL workbench disponível em:
+https://dev.mysql.com/downloads/workbench/
+
+2- Configure o MySQL. É crucial que o tipo de autenticação seja mysql_native_password para que o sistema funcione devidamente
+
+3- Acesse a pasta backend e altere a senha do usuário root para a que você cadastrou no MySQL. Caminho do arquivo:
+Pydaria/PyDaria/backend/database.py
+
+# Informações
+A navegação do site é como a de qualquer outro site conhecido na internet, com algumas considerações:
  
- 2- Não foi implementado um sistema de entregas pois é suposto que o cliente usaria o site para apenas fazer reservas de produtos na PyDaria física.
+ 1- Não foi implementado um sistema de entregas pois é suposto que o cliente usaria o site para apenas fazer reservas de produtos na PyDaria física.
  
- 3- Os produtos são todos comprados por quantidade de unidades, e não por peso ou volume.
+ 2- Os produtos são todos comprados por quantidade de unidades, e não por peso ou volume.
  
  
