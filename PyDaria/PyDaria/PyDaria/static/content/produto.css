@@ -1,0 +1,5 @@
+.produto_container {
+    display: flex;
+    flex-flow: row;
+    margin-top: 60px;
+}

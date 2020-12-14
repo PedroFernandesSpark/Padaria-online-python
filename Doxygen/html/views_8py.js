@@ -1,0 +1,25 @@
+var views_8py =
+[
+    [ "add_produto", "views_8py.html#a0d201867ca5ab9a1e74d96d3da093fa9", null ],
+    [ "carrinho", "views_8py.html#a93c6dc98b595ed85094cdc44b36d365d", null ],
+    [ "delete_from_cart", "views_8py.html#ae4e567bc7cea18d3136d77663bde2202", null ],
+    [ "home", "views_8py.html#a26ac609d4c72cff8d76ffb63a9a4b7c3", null ],
+    [ "login", "views_8py.html#a13d2f2ee5654d63e90e0daf4559ed097", null ],
+    [ "logout", "views_8py.html#a2774e292fded0fd9ce3564f4c2ebe02c", null ],
+    [ "productadm", "views_8py.html#a3486e89bfc34fb3603fb5279452a8734", null ],
+    [ "productcreate", "views_8py.html#a42077a80e5869871cdee5a62d69083de", null ],
+    [ "produto", "views_8py.html#a93c7bbf2314d5dccc50d439ba5c26334", null ],
+    [ "remove_product", "views_8py.html#a7342f10f4ede0aa10a15e64d29fdbe4f", null ],
+    [ "singup", "views_8py.html#af2dd69d46d6ddb4fb112f3887850cf91", null ],
+    [ "CLIENT_NOT_FOUND", "views_8py.html#ad9a3815645de17f054ab5e452c3c4705", null ],
+    [ "CLIENT_NOT_LOGGED", "views_8py.html#a66d1e9d78c1a78e28a5bdd995efeb5f2", null ],
+    [ "CPF_ALREADY_REGISTERED", "views_8py.html#a1b133b21f9cc35a85ae2b01c406d79ba", null ],
+    [ "NO_SUFFICIENT_PRODUCT", "views_8py.html#a928280d50996d2a37fcc14b8471970a9", null ],
+    [ "NOME_CLIENTE", "views_8py.html#af9442d9c22738f99a9fed6b2715d23c4", null ],
+    [ "PRODUCT_NOT_FOUND", "views_8py.html#a30ad9fe77723f5388f3dab5e990fc241", null ],
+    [ "PRODUCT_UNAVAILABLE", "views_8py.html#a33187e187889d50f088af7b5610100e0", null ],
+    [ "QUANTITY_NOT_POSITIVE", "views_8py.html#a982d6a54de0fb9b40a20fa3bddfe4249", null ],
+    [ "secret_key", "views_8py.html#ac181797517a7d928c92145a373cc1db0", null ],
+    [ "WRONG_CPF", "views_8py.html#a5a70acb187fc2009385836570ff44998", null ],
+    [ "WRONG_PASSWORD", "views_8py.html#a3008a550f826fef2ae035d4d0c94eabc", null ]
+];
