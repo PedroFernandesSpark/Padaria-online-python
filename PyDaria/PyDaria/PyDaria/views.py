@@ -87,11 +87,11 @@ def home():
             Se não, ele atribui ao nome o nome do cliente que vem como client[0][1]
             """
             nome = client[0][1]
-        if client[0][4] == "12345678900" or client[0][4] == "112233445566":
-            """
-                Checa se o usuário é admin, se for, manda essa informação para o site
-            """
-            admin = True
+            if client[0][4] == "12345678900" or client[0][4] == "112233445566":
+                """
+                    Checa se o usuário é admin, se for, manda essa informação para o site
+                """
+                admin = True
     return render_template(
         'index.html',
         title='Home Page',
